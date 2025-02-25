@@ -1,29 +1,33 @@
-以下、ランディングページ的な見せ方を意識したREADMEの例です。  
-インストール手順や技術的な説明は最小限にとどめ、訪問者がまず「どんなプロジェクトなのか」をぱっとイメージできるような構成としています。  
-英語版へのリンクを用意し、画像セクションの場所を明確にすることで、実際のウェブサイトに近い体裁を演出します。
-
----
 
 # NewAITees
 
-![メインビジュアル的な画像のイメージ](./images/main-visual-sample.jpg)
+![メインビジュアル的な画像のイメージ](./assets/images/247-958349849-0-12.png)
 
 AIアートやプログラミング、ゲーム配信など、多彩な活動を集約した私の個人プロジェクトです。  
 アートギャラリーを眺めたり、配信先リンクを通じて一緒に遊んだり、自由に楽しんでください。
 
-> **[English Version is here ](./README_EN.md)**
+> **[English Version is here ](README_EN.md)**
 
 ---
 
 ## ギャラリー
 
-| ファンタジー | サイバーパンク | キャラクター |
-|---|---|---|
-| ![Fantasy1](./images/fantasy1.jpg) | ![Cyberpunk1](./images/cyberpunk1.jpg) | ![Character1](./images/character1.jpg) |
-| ![Fantasy2](./images/fantasy2.jpg) | ![Cyberpunk2](./images/cyberpunk2.jpg) | ![Character2](./images/character2.jpg) |
+### 最新作品
+<div align="center">
+  <img src="./assets/images/1-2122497130-2-8.png" alt="最新作品1" width="30%" />
+  <img src="./assets/images/15-652812947-4-12.png" alt="最新作品2" width="30%" />
+  <img src="./assets/images/39-1093129821-4-20.png" alt="最新作品3" width="30%" />
+</div>
+
+### 過去作品
+<div align="center">
+  <img src="./assets/images/116-744325178-2-8-8.png" alt="人気作品1" width="30%" />
+  <img src="./assets/images/247-958349849-0-12-eye and life and .png" alt="人気作品2" width="30%" />
+  <img src="./assets/images/82_677407407_16_wm.jpg" alt="人気作品3" width="30%" />
+</div>
 
 **画像をクリックすると拡大表示や詳細が見られるようになる予定です。**  
-フィルタリング機能で、ジャンル別に切り替えられるUIを開発中です。
+フィルタリング機能で、カテゴリ別に切り替えられるUIを開発中です。
 
 ---
 
@@ -40,17 +44,17 @@ AIアートやプログラミング、ゲーム配信など、多彩な活動を
 ## ゲーム配信
 
 - **配信スケジュール**  
-  週末を中心に、アクション・RPGなど幅広いジャンルのゲームを配信中！  
+  時々平日の午前中を中心に、アクション・RPGなど幅広いジャンルのゲームを配信中！  
 - **アーカイブ**  
-  配信を見逃したときは、YouTubeやTwitchのアーカイブでご覧になれます。
+  配信を見逃したときは、Twitchのアーカイブでご覧になれます。
 
 ---
 
 ## SNS & 連絡先
 
-- **Twitter**: [@myusername](https://twitter.com/)  
-- **Instagram**: [@myartstudio](https://instagram.com/)  
-- **Email**: mycontact@example.com  
+- **Twitch**: [@JapaneseOtakuProgrammer](https://www.twitch.tv/japaneseotakuprogrammer)  
+- **Instagram**: [@NewAITees](https://www.instagram.com/new_ai_tees/)  
+- **Email**: NewAITees@gmail.com  
 
 ご意見やご感想、コラボのご相談など、お気軽にご連絡ください。
 

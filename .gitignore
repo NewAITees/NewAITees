@@ -1,0 +1,48 @@
+# macOSに関連する不要ファイル
+.DS_Store
+
+# Windowsに関連する不要ファイル
+Thumbs.db
+
+# ログファイル
+*.log
+
+# npm / Node.js関連
+node_modules/
+npm-debug.log
+package-lock.json
+
+# yarn関連
+yarn-error.log
+yarn.lock
+
+# ビルド成果物（フレームワークなどを利用する場合）
+dist/
+build/
+out/
+public/
+
+# テストのカバレッジファイル
+coverage/
+
+# エディター／IDEの設定ファイル
+.vscode/
+.idea/
+.cursorignore
+.venv
+
+# 一時的なファイルやローカル実行用の環境ファイル
+.env
+.env.*.local
+*.local
+
+# 画像が多数ある場合、一部を外部ストレージで管理するなら
+# assets/images/ の一部フォルダを無視する設定なども検討可能
+# 例: assets/images/tmp/
+assets/images/tmp/
+
+# テスト用のファイル
+test/
+test/data/
+test/fixtures/
+
