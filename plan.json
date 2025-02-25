@@ -1,0 +1,285 @@
+{
+  "kanban": {
+    "todo": [
+      {
+        "id": "T004",
+        "description": "イラストギャラリー実装",
+        "objective": "画像フィルタリング機能付きのギャラリーを構築する",
+        "steps": [
+          {
+            "name": "フィルタリングUIの実装",
+            "status": "未完了"
+          },
+          {
+            "name": "カテゴリ別フィルタリング機能の実装",
+            "status": "未完了"
+          },
+          {
+            "name": "画像モーダル表示機能の実装",
+            "status": "未完了"
+          },
+          {
+            "name": "Lazy Load機能の実装",
+            "status": "未完了"
+          },
+          {
+            "name": "ギャラリーのレスポンシブ調整",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T001, T002, T003"
+      },
+      {
+        "id": "T005",
+        "description": "プログラミング活動セクション実装",
+        "objective": "プログラミング関連の活動や作品を紹介するセクションを実装する",
+        "steps": [
+          {
+            "name": "プログラミング活動紹介コンテンツの作成",
+            "status": "未完了"
+          },
+          {
+            "name": "コードサンプル表示機能の実装（必要に応じて）",
+            "status": "未完了"
+          },
+          {
+            "name": "GitHub連携リンクやリポジトリ表示の実装",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T002"
+      },
+      {
+        "id": "T006",
+        "description": "ゲーム配信セクション実装",
+        "objective": "ゲーム配信情報を表示するセクションを実装する",
+        "steps": [
+          {
+            "name": "配信スケジュール表示UI実装",
+            "status": "未完了"
+          },
+          {
+            "name": "Twitch/YouTubeなどの埋め込みウィジェット実装",
+            "status": "未完了"
+          },
+          {
+            "name": "アーカイブリンク表示機能の実装",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T002"
+      },
+      {
+        "id": "T007",
+        "description": "SNS・連絡先セクション実装",
+        "objective": "SNSリンクや連絡先情報を表示するセクションを実装する",
+        "steps": [
+          {
+            "name": "SNSアイコンとリンクの実装",
+            "status": "未完了"
+          },
+          {
+            "name": "連絡先情報表示の実装",
+            "status": "未完了"
+          },
+          {
+            "name": "（オプション）お問い合わせフォームの実装",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T002"
+      },
+      {
+        "id": "T008",
+        "description": "パフォーマンス最適化",
+        "objective": "ウェブサイトの表示速度と使用感を最適化する",
+        "steps": [
+          {
+            "name": "画像の最適化（サイズ調整、圧縮）",
+            "status": "未完了"
+          },
+          {
+            "name": "CSS・JavaScriptの最適化",
+            "status": "未完了"
+          },
+          {
+            "name": "パフォーマンステスト実施と改善",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T004, T005, T006, T007"
+      },
+      {
+        "id": "T009",
+        "description": "アクセシビリティ対応",
+        "objective": "より多くのユーザーがアクセスできるようにアクセシビリティを向上させる",
+        "steps": [
+          {
+            "name": "alt属性など必要なアクセシビリティ属性の追加",
+            "status": "未完了"
+          },
+          {
+            "name": "キーボードナビゲーション対応",
+            "status": "未完了"
+          },
+          {
+            "name": "色のコントラスト確認と調整",
+            "status": "未完了"
+          },
+          {
+            "name": "WAVEなどのツールでアクセシビリティテスト実施",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T002, T004, T005, T006, T007"
+      },
+      {
+        "id": "T010",
+        "description": "デプロイ・運用設定",
+        "objective": "作成したウェブサイトを公開し、運用できるようにする",
+        "steps": [
+          {
+            "name": "GitHub Pages設定",
+            "status": "未完了"
+          },
+          {
+            "name": "（オプション）独自ドメイン設定",
+            "status": "未完了"
+          },
+          {
+            "name": "クロスブラウザテスト実施",
+            "status": "未完了"
+          },
+          {
+            "name": "モバイル対応テスト実施",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T008, T009"
+      },
+      {
+        "id": "T011",
+        "description": "拡張機能（第2フェーズ）計画",
+        "objective": "MVPリリース後の機能拡張計画を立てる",
+        "steps": [
+          {
+            "name": "アナリティクス導入計画",
+            "status": "未完了"
+          },
+          {
+            "name": "作品詳細ページ実装計画",
+            "status": "未完了"
+          },
+          {
+            "name": "コンテンツ管理システム導入検討",
+            "status": "未完了"
+          },
+          {
+            "name": "配信スケジュール自動更新機能検討",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T010"
+      }
+    ],
+    "done": [
+      {
+        "id": "T001",
+        "description": "プロジェクト基盤設定",
+        "objective": "開発に必要な基本構造とファイルを準備する",
+        "steps": [
+          {
+            "name": "ディレクトリ構造の整理（assets, css, js, i18nフォルダなど）",
+            "status": "完了"
+          },
+          {
+            "name": "基本的なHTMLファイル（index.html）の作成",
+            "status": "完了"
+          },
+          {
+            "name": "package.jsonの設定（必要な場合）",
+            "status": "不要と判断"
+          },
+          {
+            "name": ".gitignoreファイルの設定",
+            "status": "完了"
+          }
+        ],
+        "overallStatus": "完了",
+        "dependencies": "",
+        "result": "ディレクトリ構造の整理、index.htmlの作成、.gitignoreの設定を完了",
+        "observations": "シンプルな静的サイトのため、現段階ではpackage.jsonは不要。コード量が増えた場合はモジュール管理導入を検討"
+      },
+      {
+        "id": "T002",
+        "description": "基本レイアウト・デザイン実装",
+        "objective": "ウェブサイトの基本的なレイアウトとデザインを整える",
+        "steps": [
+          {
+            "name": "ヘッダー・フッターの設計と実装",
+            "status": "完了"
+          },
+          {
+            "name": "メインビジュアルセクションの実装",
+            "status": "完了"
+          },
+          {
+            "name": "各コンテンツセクションの基本レイアウト作成",
+            "status": "完了"
+          },
+          {
+            "name": "レスポンシブデザインの基本設定",
+            "status": "完了"
+          },
+          {
+            "name": "テーマカラーとフォント設定",
+            "status": "完了"
+          }
+        ],
+        "overallStatus": "完了",
+        "dependencies": "T001",
+        "result": "変数を用いたCSS設計により統一感のあるデザインを実装。スマホからデスクトップまで対応するレスポンシブレイアウトを実現",
+        "observations": "メインビジュアルの背景画像は仮設定。CSS変数を活用することでテーマカラーの変更が容易になっている"
+      },
+      {
+        "id": "T003",
+        "description": "多言語対応機能実装",
+        "objective": "ユーザーのブラウザ設定に合わせた言語表示切り替え機能を提供する",
+        "steps": [
+          {
+            "name": "日本語・英語の言語JSONファイル作成",
+            "status": "完了"
+          },
+          {
+            "name": "言語切り替えJavaScript機能の実装",
+            "status": "完了"
+          },
+          {
+            "name": "言語設定の永続化（ローカルストレージ利用）",
+            "status": "完了"
+          },
+          {
+            "name": "ブラウザ言語の自動検出実装",
+            "status": "完了"
+          },
+          {
+            "name": "言語切り替えUIの実装",
+            "status": "完了"
+          }
+        ],
+        "overallStatus": "完了",
+        "dependencies": "T001, T002",
+        "result": "クラスベースの多言語対応機能を実装。ブラウザ言語自動検出、手動切替機能、設定保存機能を完備",
+        "observations": "I18nManagerクラスは拡張性を考慮して設計。data-i18n属性を使ったマークアップにより、HTMLとi18nテキストの分離を実現"
+      }
+    ]
+  }
+}

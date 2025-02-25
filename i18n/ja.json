@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "gallery": "ギャラリー",
+    "programming": "プログラミング",
+    "streaming": "ゲーム配信",
+    "contact": "連絡先"
+  },
+  "main": {
+    "title": "NewAITees",
+    "subtitle": "AIアートやプログラミング、ゲーム配信など、多彩な活動を集約した個人プロジェクト"
+  },
+  "gallery": {
+    "title": "ギャラリー",
+    "latest": "最新作品",
+    "popular": "人気作品",
+    "filter": {
+      "all": "すべて",
+      "fantasy": "ファンタジー",
+      "scifi": "SF",
+      "animal": "動物",
+      "landscape": "風景",
+      "other": "その他"
+    }
+  },
+  "programming": {
+    "title": "プログラミング活動",
+    "webapps": "Webアプリやツール",
+    "webapps_desc": "Web技術を使って、AIアートの生成補助や管理ツールを作っています。",
+    "code_samples": "コードサンプル",
+    "code_samples_desc": "フロントエンドやPythonスクリプトなど、ちょっとしたコードを公開中。気になるものがあればForkして遊んでみてください。"
+  },
+  "streaming": {
+    "title": "ゲーム配信",
+    "schedule": "配信スケジュール",
+    "schedule_desc": "時々平日の午前中を中心に、アクション・RPGなど幅広いジャンルのゲームを配信中！",
+    "archives": "アーカイブ",
+    "archives_desc": "配信を見逃したときは、Twitchのアーカイブでご覧になれます。"
+  },
+  "contact": {
+    "title": "連絡先 & SNS",
+    "message": "ご意見やご感想、コラボのご相談など、お気軽にご連絡ください。",
+    "twitch": "Twitch",
+    "instagram": "Instagram",
+    "email": "Email"
+  },
+  "footer": {
+    "copyright": "© 2025 NewAITees. All rights reserved.",
+    "rights": "作品の再利用・再配布などはご相談をお願いいたします。"
+  },
+  "language": {
+    "ja": "日本語",
+    "en": "English"
+  }
+} 

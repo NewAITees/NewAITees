@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "gallery": "Gallery",
+    "programming": "Programming",
+    "streaming": "Game Streaming",
+    "contact": "Contact"
+  },
+  "main": {
+    "title": "NewAITees",
+    "subtitle": "A personal portfolio showcasing AI art, programming projects, and game streaming"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "latest": "Latest Works",
+    "popular": "Popular Works",
+    "filter": {
+      "all": "All",
+      "fantasy": "Fantasy",
+      "scifi": "Sci-Fi",
+      "animal": "Animals",
+      "landscape": "Landscapes",
+      "other": "Others"
+    }
+  },
+  "programming": {
+    "title": "Programming",
+    "webapps": "Web Apps & Tools",
+    "webapps_desc": "I create web tools to help with AI art generation and management.",
+    "code_samples": "Code Samples",
+    "code_samples_desc": "Various frontend and Python scripts are available. Feel free to fork and experiment with them."
+  },
+  "streaming": {
+    "title": "Game Streaming",
+    "schedule": "Streaming Schedule",
+    "schedule_desc": "I stream various games including action and RPG titles, mostly on weekday mornings!",
+    "archives": "Archives",
+    "archives_desc": "Missed a stream? You can watch past broadcasts on my Twitch channel."
+  },
+  "contact": {
+    "title": "Contact & Social Media",
+    "message": "Feel free to reach out with feedback, collaboration ideas, or just to say hello!",
+    "twitch": "Twitch",
+    "instagram": "Instagram",
+    "email": "Email"
+  },
+  "footer": {
+    "copyright": "© 2025 NewAITees. All rights reserved.",
+    "rights": "Please contact me regarding reuse or redistribution of any content."
+  },
+  "language": {
+    "ja": "日本語",
+    "en": "English"
+  }
+} 
