@@ -22,7 +22,7 @@ AIアートやプログラミング、ゲーム配信など、多彩な活動を
 ### 過去作品
 <div align="center">
   <img src="./assets/images/116-744325178-2-8-8.png" alt="人気作品1" width="30%" />
-  <img src="./assets/images/247-958349849-0-12-eye and life and .png" alt="人気作品2" width="30%" />
+  <img src="./assets/images/52-2006770321-2-12.png" alt="人気作品2" width="30%" />
   <img src="./assets/images/82_677407407_16_wm.jpg" alt="人気作品3" width="30%" />
 </div>
 

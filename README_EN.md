@@ -41,9 +41,9 @@ A filtering feature will be available to toggle categories (e.g., Fantasy, Sci-F
 
 ## Social & Contact
 
-- **Twitter**: [@myusername](https://twitter.com/)  
-- **Instagram**: [@myartstudio](https://instagram.com/)  
-- **Email**: mycontact@example.com  
+- **Twitch**: [@JapaneseOtakuProgrammer](https://www.twitch.tv/japaneseotakuprogrammer)  
+- **Instagram**: [@NewAITees](https://www.instagram.com/new_ai_tees/)  
+- **Email**: NewAITees@gmail.com
 
 Feedback, collaboration proposals, or just a friendly hello are all welcome!
 

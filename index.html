@@ -3,11 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>NewAITees - AIアート・プログラミング・ゲーム配信</title>
-    <meta name="description" content="AIアートやプログラミング、ゲーム配信など、多彩な活動を集約した個人ポートフォリオサイトです。">
+    <meta name="description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+    <!-- Open Graph tags for social media sharing -->
+    <meta property="og:title" content="Your Portfolio">
+    <meta property="og:description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://yourusername.github.io">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Portfolio">
+    <meta name="twitter:description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
 </head>
 <body>
     <header id="header">
@@ -38,14 +60,36 @@
             </div>
         </section>
 
-        <!-- ギャラリーセクション -->
-        <section id="gallery" class="section gallery">
-            <h2 data-i18n="gallery.title">ギャラリー</h2>
-            <div class="gallery-filter">
-                <!-- フィルタリングUI（後で詳細実装） -->
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="gallery.title">Gallery</h2>
+                <p class="section-description" data-i18n="gallery.description">Check out my illustrations</p>
+                
+                <!-- Filter Buttons -->
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all" data-i18n="gallery.filter.all">All</button>
+                    <button class="filter-btn" data-filter="digital" data-i18n="gallery.filter.digital">Digital</button>
+                    <button class="filter-btn" data-filter="traditional" data-i18n="gallery.filter.traditional">Traditional</button>
+                    <button class="filter-btn" data-filter="sketch" data-i18n="gallery.filter.sketch">Sketches</button>
+                    <button class="filter-btn" data-filter="character" data-i18n="gallery.filter.character">Characters</button>
+                </div>
+                
+                <!-- Gallery Images Container -->
+                <div class="gallery-container">
+                    <!-- Images will be loaded dynamically by JavaScript -->
+                </div>
             </div>
-            <div class="gallery-grid">
-                <!-- 画像表示エリア（後で詳細実装） -->
+            
+            <!-- Image Modal -->
+            <div id="gallery-modal" class="gallery-modal">
+                <span class="modal-close">&times;</span>
+                <img class="modal-content" id="modal-img">
+                <div class="modal-caption" id="modal-caption"></div>
+                <div class="modal-navigation">
+                    <button class="nav-btn prev" id="prev-btn">&lt;</button>
+                    <button class="nav-btn next" id="next-btn">&gt;</button>
+                </div>
             </div>
         </section>
 
@@ -64,12 +108,75 @@
                 <!-- 配信関連コンテンツ（後で詳細実装） -->
             </div>
         </section>
-
-        <!-- 連絡先セクション -->
-        <section id="contact" class="section contact">
-            <h2 data-i18n="contact.title">連絡先 & SNS</h2>
-            <div class="contact-content">
-                <!-- 連絡先・SNS関連コンテンツ（後で詳細実装） -->
+        <!-- Contact & SNS Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contact.title">Contact & SNS</h2>
+                <p class="section-description" data-i18n="contact.description">Get in touch or follow me on social media</p>
+                
+                <div class="contact-grid">
+                    <!-- SNS Links -->
+                    <div class="sns-links">
+                        <h3 data-i18n="contact.follow">Follow Me</h3>
+                        <div class="sns-icons">
+                            <!-- 
+                            <a href="https://twitter.com/ai_portfolio_jp" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            -->
+                            <a href="https://instagram.com/new_ai_tees/" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://github.com/NewAITees/NewAITees" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://twitch.tv/japaneseotakuprogrammer" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Twitch">
+                                <i class="fab fa-twitch"></i>
+                            </a>
+                            <!-- 
+                            <a href="https://youtube.com/c/AIPortfolioChannel" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            -->
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h3 data-i18n="contact.info">Contact Information</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:newaitees@gmail.com">newaitees@gmail.com</a>
+                            </li>
+                            <!-- 
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://ai-portfolio.jp" target="_blank" rel="noopener noreferrer">https://ai-portfolio.jp</a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- GitHub Issues for Questions -->
+                <div class="github-issues">
+                    <h3 data-i18n="contact.questions">Questions or Feedback?</h3>
+                    <p data-i18n="contact.issues">If you have questions or feedback, please open an issue on GitHub:</p>
+                    <a href="https://github.com/newaitees/newaitees/issues/new" target="_blank" rel="noopener noreferrer" class="github-button">
+                        <i class="fas fa-comment-alt"></i>
+                        <span data-i18n="contact.openIssue">Open an Issue</span>
+                    </a>
+                    <div class="issue-guidelines">
+                        <h4 data-i18n="contact.guidelines">Guidelines for Issues</h4>
+                        <ul>
+                            <li data-i18n="contact.guidelines.1">Check existing issues before creating a new one</li>
+                            <li data-i18n="contact.guidelines.2">Use a clear and descriptive title</li>
+                            <li data-i18n="contact.guidelines.3">Include as much detail as possible</li>
+                            <li data-i18n="contact.guidelines.4">Add labels to categorize your issue (if applicable)</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

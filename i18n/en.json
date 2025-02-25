@@ -10,16 +10,16 @@
     "subtitle": "A personal portfolio showcasing AI art, programming projects, and game streaming"
   },
   "gallery": {
-    "title": "Gallery",
+    "title": "Illustration Gallery",
+    "description": "Browse through my various artworks and illustrations",
     "latest": "Latest Works",
     "popular": "Popular Works",
     "filter": {
       "all": "All",
-      "fantasy": "Fantasy",
-      "scifi": "Sci-Fi",
-      "animal": "Animals",
-      "landscape": "Landscapes",
-      "other": "Others"
+      "digital": "Digital",
+      "traditional": "Traditional",
+      "sketch": "Sketches",
+      "character": "Characters"
     }
   },
   "programming": {
@@ -37,7 +37,18 @@
     "archives_desc": "Missed a stream? You can watch past broadcasts on my Twitch channel."
   },
   "contact": {
-    "title": "Contact & Social Media",
+    "title": "Contact & SNS",
+    "description": "Get in touch or follow me on social media",
+    "follow": "Follow Me",
+    "info": "Contact Information",
+    "questions": "Questions or Feedback?",
+    "issues": "If you have questions or feedback, please open an issue on GitHub:",
+    "openIssue": "Open an Issue",
+    "guidelines": "Guidelines for Issues",
+    "guidelines.1": "Check existing issues before creating a new one",
+    "guidelines.2": "Use a clear and descriptive title",
+    "guidelines.3": "Include as much detail as possible",
+    "guidelines.4": "Add labels to categorize your issue (if applicable)",
     "message": "Feel free to reach out with feedback, collaboration ideas, or just to say hello!",
     "twitch": "Twitch",
     "instagram": "Instagram",

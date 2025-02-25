@@ -1,0 +1,33 @@
+/* Performance Optimizations */
+
+/* Image Optimizations */
+.optimized-img {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive Images with srcset */
+.responsive-img {
+  width: 100%;
+  height: auto;
+}
+
+/* Fade-in Animation for Lazy Loaded Images */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lazy-img {
+  opacity: 0;
+}
+
+.lazy-img.loaded {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+/* Content Visibility for Off-screen Content */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
+} 

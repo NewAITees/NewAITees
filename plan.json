@@ -8,26 +8,26 @@
         "steps": [
           {
             "name": "フィルタリングUIの実装",
-            "status": "未完了"
+            "status": "完了"
           },
           {
             "name": "カテゴリ別フィルタリング機能の実装",
-            "status": "未完了"
+            "status": "完了"
           },
           {
             "name": "画像モーダル表示機能の実装",
-            "status": "未完了"
+            "status": "完了"
           },
           {
             "name": "Lazy Load機能の実装",
-            "status": "未完了"
+            "status": "完了"
           },
           {
             "name": "ギャラリーのレスポンシブ調整",
-            "status": "未完了"
+            "status": "完了"
           }
         ],
-        "overallStatus": "未着手",
+        "overallStatus": "完了",
         "dependencies": "T001, T002, T003"
       },
       {
@@ -71,48 +71,6 @@
         ],
         "overallStatus": "未着手",
         "dependencies": "T002"
-      },
-      {
-        "id": "T007",
-        "description": "SNS・連絡先セクション実装",
-        "objective": "SNSリンクや連絡先情報を表示するセクションを実装する",
-        "steps": [
-          {
-            "name": "SNSアイコンとリンクの実装",
-            "status": "未完了"
-          },
-          {
-            "name": "連絡先情報表示の実装",
-            "status": "未完了"
-          },
-          {
-            "name": "（オプション）お問い合わせフォームの実装",
-            "status": "未完了"
-          }
-        ],
-        "overallStatus": "未着手",
-        "dependencies": "T002"
-      },
-      {
-        "id": "T008",
-        "description": "パフォーマンス最適化",
-        "objective": "ウェブサイトの表示速度と使用感を最適化する",
-        "steps": [
-          {
-            "name": "画像の最適化（サイズ調整、圧縮）",
-            "status": "未完了"
-          },
-          {
-            "name": "CSS・JavaScriptの最適化",
-            "status": "未完了"
-          },
-          {
-            "name": "パフォーマンステスト実施と改善",
-            "status": "未完了"
-          }
-        ],
-        "overallStatus": "未着手",
-        "dependencies": "T004, T005, T006, T007"
       },
       {
         "id": "T009",
@@ -188,6 +146,58 @@
         ],
         "overallStatus": "未着手",
         "dependencies": "T010"
+      },
+      {
+        "id": "T012",
+        "description": "実際の画像コンテンツを作成・最適化し、ギャラリーに追加",
+        "objective": "AIで生成した高品質なイラストをウェブサイトのギャラリーに追加し、表示を最適化する",
+        "steps": [
+          {
+            "name": "既存イラスト素材の整理とカテゴリ分類",
+            "status": "未完了"
+          },
+          {
+            "name": "画像のサイズ最適化とJPEG形式への変換（必要に応じて）",
+            "status": "未完了"
+          },
+          {
+            "name": "各イラストの代替テキスト（alt属性）作成",
+            "status": "未完了"
+          },
+          {
+            "name": "イラスト情報のJSONデータ構造作成（タイトル、カテゴリ、タグなど）",
+            "status": "未完了"
+          },
+          {
+            "name": "ギャラリーに最適化画像の追加と表示テスト",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "未着手",
+        "dependencies": "T004"
+      },
+      {
+        "id": "T013",
+        "description": "READMEから正確な連絡先情報を抽出して設定",
+        "objective": "READMEファイルから連絡先情報を抽出し、ウェブサイトの連絡先セクションに正確に表示する",
+        "steps": [
+          {
+            "name": "READMEファイルから連絡先情報（メール、SNSなど）の抽出",
+            "status": "未完了"
+          },
+          {
+            "name": "抽出した連絡先情報の多言語対応（日本語・英語）",
+            "status": "未完了"
+          },
+          {
+            "name": "連絡先情報のJSONデータへの追加",
+            "status": "未完了"
+          },
+          {
+            "name": "ウェブサイトの連絡先セクションへの情報表示実装",
+            "status": "未完了"
+          }
+        ]
       }
     ],
     "done": [
@@ -279,7 +289,49 @@
         "dependencies": "T001, T002",
         "result": "クラスベースの多言語対応機能を実装。ブラウザ言語自動検出、手動切替機能、設定保存機能を完備",
         "observations": "I18nManagerクラスは拡張性を考慮して設計。data-i18n属性を使ったマークアップにより、HTMLとi18nテキストの分離を実現"
+      },
+      {
+        "id": "T007",
+        "description": "SNS・連絡先セクション実装",
+        "objective": "SNSリンクや連絡先情報を表示するセクションを実装する",
+        "steps": [
+          {
+            "name": "SNSアイコンとリンクの実装",
+            "status": "完了"
+          },
+          {
+            "name": "連絡先情報表示の実装",
+            "status": "完了"
+          },
+          {
+            "name": "（オプション）お問い合わせフォームの実装",
+            "status": "未完了"
+          }
+        ],
+        "overallStatus": "完了",
+        "dependencies": "T002"
+      },
+      {
+        "id": "T008",
+        "description": "パフォーマンス最適化",
+        "objective": "ウェブサイトの表示速度と使用感を最適化する",
+        "steps": [
+          {
+            "name": "画像の最適化（サイズ調整、圧縮）",
+            "status": "完了"
+          },
+          {
+            "name": "CSS・JavaScriptの最適化",
+            "status": "完了"
+          },
+          {
+            "name": "パフォーマンステスト実施と改善",
+            "status": "完了"
+          }
+        ],
+        "overallStatus": "完了",
+        "dependencies": "T004, T007"
       }
     ]
   }
-}
+} 

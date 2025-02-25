@@ -10,16 +10,16 @@
     "subtitle": "AIアートやプログラミング、ゲーム配信など、多彩な活動を集約した個人プロジェクト"
   },
   "gallery": {
-    "title": "ギャラリー",
+    "title": "イラストギャラリー",
+    "description": "様々なアートワークやイラストをご覧ください",
     "latest": "最新作品",
     "popular": "人気作品",
     "filter": {
       "all": "すべて",
-      "fantasy": "ファンタジー",
-      "scifi": "SF",
-      "animal": "動物",
-      "landscape": "風景",
-      "other": "その他"
+      "digital": "デジタル",
+      "traditional": "トラディショナル",
+      "sketch": "スケッチ",
+      "character": "キャラクター"
     }
   },
   "programming": {
@@ -37,11 +37,18 @@
     "archives_desc": "配信を見逃したときは、Twitchのアーカイブでご覧になれます。"
   },
   "contact": {
-    "title": "連絡先 & SNS",
-    "message": "ご意見やご感想、コラボのご相談など、お気軽にご連絡ください。",
-    "twitch": "Twitch",
-    "instagram": "Instagram",
-    "email": "Email"
+    "title": "連絡先・SNS",
+    "description": "連絡先や各種SNSリンクです",
+    "follow": "フォローする",
+    "info": "連絡先情報",
+    "questions": "質問やフィードバック",
+    "issues": "質問やフィードバックがある場合は、GitHubでIssueを作成してください：",
+    "openIssue": "Issueを作成する",
+    "guidelines": "Issue作成のガイドライン",
+    "guidelines.1": "新しいIssueを作成する前に、既存のIssueを確認してください",
+    "guidelines.2": "明確で説明的なタイトルを使用してください",
+    "guidelines.3": "できるだけ詳細な情報を含めてください",
+    "guidelines.4": "必要に応じてラベルを追加して、Issueを分類してください"
   },
   "footer": {
     "copyright": "© 2025 NewAITees. All rights reserved.",

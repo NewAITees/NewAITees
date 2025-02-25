@@ -8,7 +8,6 @@ desktop.ini
 .vscode/
 *.sublime-project
 *.sublime-workspace
-
 # Dependency directories
 node_modules/
 vendor/
@@ -62,7 +61,7 @@ coverage/
 .idea/
 .cursorignore
 .venv
-
+.git/
 # 一時的なファイルやローカル実行用の環境ファイル
 .env
 .env.*.local
