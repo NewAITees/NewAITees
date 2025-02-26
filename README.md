@@ -12,18 +12,14 @@ AIアートやプログラミング、ゲーム配信など、多彩な活動を
 
 ## ギャラリー
 
-### 最新作品
+### 過去作品例
 <div align="center">
-  <img src="./assets/images/1-2122497130-2-8.png" alt="最新作品1" width="30%" />
-  <img src="./assets/images/15-652812947-4-12.png" alt="最新作品2" width="30%" />
-  <img src="./assets/images/39-1093129821-4-20.png" alt="最新作品3" width="30%" />
-</div>
-
-### 過去作品
-<div align="center">
-  <img src="./assets/images/116-744325178-2-8-8.png" alt="人気作品1" width="30%" />
-  <img src="./assets/images/52-2006770321-2-12.png" alt="人気作品2" width="30%" />
-  <img src="./assets/images/82_677407407_16_wm.jpg" alt="人気作品3" width="30%" />
+  <img src="./assets/gallery/abstract_image/1-349826620-1-2-12-pyramid foodvisor and abstract and gradient.png" alt="abstract work" width="30%" />
+  <img src="./assets/gallery/botanical/15-652812947-4-12.png" alt="botanical work" width="30%" />
+  <img src="./assets/gallery/bottled_image/27-78418751-3-16.png" alt="bottled images" width="30%" />
+  <img src="./assets/gallery/horror/25-1281319717-3-8.png" alt="horror work" width="30%" />
+  <img src="./assets/gallery/joke/1-2122497130-2-8.png" alt="joke work" width="30%" />
+  <img src="./assets/gallery/monochrome/0-1420753085-45-8-12-nosferatu and warewolf.png" alt="monochrome work" width="30%" />
 </div>
 
 **画像をクリックすると拡大表示や詳細が見られるようになる予定です。**  
@@ -68,6 +64,9 @@ AIアートやプログラミング、ゲーム配信など、多彩な活動を
   ```bash
   git clone https://github.com/yourusername/NewAITees.git
   cd NewAITees
+
+  node gallery-generator.js
+
   npx http-server . # など、お好みのローカルサーバを利用
   ```
 - **多言語対応**  
