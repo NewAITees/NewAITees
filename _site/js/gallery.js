@@ -65,24 +65,24 @@ class GalleryManager {
     this.images = [
       {
         id: 1,
-        src: 'assets/images/gallery/digital/image1.jpg',
-        thumbnail: 'assets/images/gallery/digital/thumbs/image1.jpg',
+        src: 'assets/gallery/digital/image1.jpg',
+        thumbnail: 'assets/gallery/digital/thumbs/image1.jpg',
         title: 'Digital Artwork 1',
         description: 'A colorful digital illustration',
         categories: ['digital', 'character']
       },
       {
         id: 2,
-        src: 'assets/images/gallery/traditional/image2.jpg',
-        thumbnail: 'assets/images/gallery/traditional/thumbs/image2.jpg',
+        src: 'assets/gallery/traditional/image2.jpg',
+        thumbnail: 'assets/gallery/traditional/thumbs/image2.jpg',
         title: 'Traditional Artwork 1',
         description: 'A traditional painting using watercolor',
         categories: ['traditional']
       },
       {
         id: 3,
-        src: 'assets/images/gallery/sketch/image3.jpg',
-        thumbnail: 'assets/images/gallery/sketch/thumbs/image3.jpg',
+        src: 'assets/gallery/sketch/image3.jpg',
+        thumbnail: 'assets/gallery/sketch/thumbs/image3.jpg',
         title: 'Sketch 1',
         description: 'A pencil sketch of a landscape',
         categories: ['sketch']

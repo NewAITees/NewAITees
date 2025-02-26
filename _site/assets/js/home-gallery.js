@@ -1,7 +1,7 @@
 /**
  * home-gallery.js
  * トップページ用のギャラリープレビュー表示機能
- * ギャラリーからランダムに画像を選んで表示します
+ * ギャラリーから5枚の画像をランダムに選んで表示します
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,7 +15,7 @@ function initHomeGallery() {
     const homeGallery = document.getElementById('home-gallery');
     if (!homeGallery) return;
     
-    // JSONファイルからデータを読み込む
+    // JSONファイルからデータを読み込む試み
     fetch('./assets/js/gallery-data.json')
         .then(response => {
             if (!response.ok) {
@@ -28,7 +28,7 @@ function initHomeGallery() {
             displayRandomImages(data);
         })
         .catch(error => {
-            console.error('JSONからの読み込みに失敗しました:', error);
+            console.warn('JSONからの読み込みに失敗しました。デフォルトデータを使用します:', error);
             // エラーメッセージを表示
             homeGallery.innerHTML = '<p>ギャラリーデータの読み込みに失敗しました。</p>';
         });
@@ -55,7 +55,7 @@ function initHomeGallery() {
             const title = item.title || formatFileName(item.alt);
             
             galleryItem.innerHTML = `
-                <img src="${item.src}" alt="${item.alt}" onerror="this.src='./assets/placeholder.jpg'">
+                <img src="${item.src}" alt="${item.alt}" onerror="this.src='./assets/images/247-958349849-0-12.png'">
                 <div class="home-gallery-item-info">
                     <h3>${title}</h3>
                     <p>${formatCategoryName(item.category)}</p>
@@ -64,7 +64,7 @@ function initHomeGallery() {
             
             homeGallery.appendChild(galleryItem);
             
-            // クリック時の挙動 - モーダル表示
+            // クリック時の挙動（モーダル表示）
             galleryItem.addEventListener('click', function() {
                 const imgSrc = this.querySelector('img').src;
                 const modal = document.createElement('div');
@@ -93,6 +93,16 @@ function initHomeGallery() {
                         document.body.style.overflow = '';
                     }
                 });
+            });
+            
+            // 画像が正常に読み込まれたことを確認するためのイベントリスナーを追加
+            const img = galleryItem.querySelector('img');
+            img.addEventListener('load', function() {
+                console.log('画像が正常に読み込まれました:', this.src);
+            });
+            
+            img.addEventListener('error', function() {
+                console.warn('画像の読み込みに失敗しました:', this.src);
             });
         });
     }
