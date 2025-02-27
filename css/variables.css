@@ -39,11 +39,3 @@
     --transition-speed: 0.3s;
 }
 
-/* ダークモード（将来的に実装する場合） */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --light-color: #2c3e50;
-        --dark-color: #ecf0f1;
-        /* 他のダークモード用カラー */
-    }
-} 

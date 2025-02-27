@@ -32,7 +32,7 @@
   "streaming": {
     "title": "ゲーム配信",
     "schedule": "配信スケジュール",
-    "schedule_desc": "時々平日の午前中を中心に、アクション・RPGなど幅広いジャンルのゲームを配信中！",
+    "schedule_desc": "時々平日の午前中を中心に、アクション・RPGなど幅広いジャンルのゲームを配信中",
     "archives": "アーカイブ",
     "archives_desc": "配信を見逃したときは、Twitchのアーカイブでご覧になれます。"
   },
@@ -42,13 +42,13 @@
     "follow": "フォローする",
     "info": "連絡先情報",
     "questions": "質問やフィードバック",
-    "issues": "質問やフィードバックがある場合は、GitHubでIssueを作成してください：",
+    "issues": "質問やフィードバックがある場合は、GitHubでIssueを作成してください",
     "openIssue": "Issueを作成する",
     "guidelines": "Issue作成のガイドライン",
-    "guidelines.1": "新しいIssueを作成する前に、既存のIssueを確認してください",
-    "guidelines.2": "明確で説明的なタイトルを使用してください",
-    "guidelines.3": "できるだけ詳細な情報を含めてください",
-    "guidelines.4": "必要に応じてラベルを追加して、Issueを分類してください"
+    "guidelines1": "新しいIssueを作成する前に、既存のIssueを確認してください",
+    "guidelines2": "明確で説明的なタイトルを使用してください",
+    "guidelines3": "できるだけ詳細な情報を含めてください",
+    "guidelines4": "必要に応じてラベルを追加して、Issueを分類してください"
   },
   "footer": {
     "copyright": "© 2025 NewAITees. All rights reserved.",
