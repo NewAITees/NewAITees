@@ -104,11 +104,11 @@
         "steps": [
           {
             "name": "GitHub Pages設定",
-            "status": "未完了"
+            "status": "完了"
           },
           {
             "name": "（オプション）独自ドメイン設定",
-            "status": "未完了"
+            "status": "完了"
           },
           {
             "name": "クロスブラウザテスト実施",

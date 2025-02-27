@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Generate Gallery and Deploy to GitHub Pages
 
 on:
   push:
@@ -11,21 +11,34 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
           
+      - name: Generate Gallery JSON 🖼️
+        run: node gallery-generator.js
+          
       - name: Install and Build 🔧
         run: |
           # If you have a build process, uncomment these lines
           # npm install
           # npm run build
+          
+      - name: Commit gallery data changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add assets/js/gallery-data.json
+          git commit -m "Auto-update gallery data" || echo "No changes to commit"
+          git push
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
           folder: .  # Change this to your build output folder if applicable
-          clean: true 
+          clean: true
