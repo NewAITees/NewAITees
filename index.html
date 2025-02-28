@@ -45,13 +45,13 @@
                 <ul>
                     <li><a href="#gallery-preview-section" data-i18n="nav.gallery">ギャラリー</a></li>
                     <li><a href="#programming" data-i18n="nav.programming">プログラミング</a></li>
-                    <li><a href="#streaming" data-i18n="nav.streaming">ゲーム配信</a></li>
+                    <li><a href="#streaming" data-i18n="nav.streaming">配信活動</a></li>
                     <li><a href="#contact" data-i18n="nav.contact">連絡先</a></li>
                 </ul>
             </nav>
             <div class="language-switcher">
-                <button class="lang-btn" data-lang="ja">日本語</button>
-                <button class="lang-btn" data-lang="en">English</button>
+                <button class="lang-btn" data-lang="ja" data-i18n="language.ja">日本語</button>
+                <button class="lang-btn" data-lang="en" data-i18n="language.en">English</button>
             </div>
         </div>
     </header>
@@ -68,8 +68,8 @@
         <!-- ギャラリープレビューセクション -->
         <section id="gallery-preview-section" class="gallery-preview-section">
             <div class="container">
-                <h2 class="section-title">作品ギャラリー</h2>
-                <p class="section-description">最新のAIアート作品からランダムに選ばれた作品をご紹介します</p>
+                <h2 class="section-title" data-i18n="gallery.title">作品ギャラリー</h2>
+                <p class="section-description" data-i18n="gallery.description">最新のAIアート作品からランダムに選ばれた作品をご紹介します</p>
                 
                 <div class="home-gallery" id="home-gallery">
                     <!-- ここにJavaScriptで画像がランダムに挿入されます -->
@@ -79,48 +79,53 @@
                     <a href="gallery.html" class="view-more-btn">ギャラリーをもっと見る</a>
                 </div>
 
+                <!-- Tシャツ販売情報 -->
                 <div class="tshirt-info">
-                    <p>今までに作成したAIアートを貼り付けたTシャツを販売しています</p>
-                    <p>ページは<a href="https://www.ttrinity.jp/shop/newAItees/">こちら</a></p>
-                    <p>If you want to purchase my T-shirts from outside of Japan, please visit <a href="https://monster-maker.creator-spring.com/">here</a></p>
-                    <p>今までに作成したAIアート作品の中でTシャツにしてほしい作品がありましたらリクエストからご連絡ください</p>
+                    <p data-i18n="gallery.tshirt_info">今までに作成したAIアートを貼り付けたTシャツを販売しています</p>
+                    <p>ページは<a href="https://www.ttrinity.jp/shop/newAItees/" data-i18n="gallery.japan_shop">こちら</a></p>
+                    <p data-i18n="gallery.global_shop">If you want to purchase my T-shirts from outside of Japan, please visit <a href="https://monster-maker.creator-spring.com/">here</a></p>
+                    <p data-i18n="gallery.request_info">今までに作成したAIアート作品の中でTシャツにしてほしい作品がありましたらリクエストからご連絡ください</p>
                 </div>
             </div>
         </section>
 
         <!-- プログラミング活動セクション -->
         <section id="programming" class="section programming">
-            <h2 data-i18n="programming.title">プログラミング活動</h2>
-            <div class="programming-content">
-                <p>主にAITuberや、生成AI、ModelContextProtocol（MCP）などの分野にかかわるプログラミング活動を行っています。</p>
+            <div class="container">
+                <h2 data-i18n="programming.title">プログラミング活動</h2>
+                <p data-i18n="programming.description">主にAITuberや、生成AI、ModelContextProtocol（MCP）などの分野にかかわるプログラミング活動を行っています。</p>
                 
-                <h3>例</h3>
-                <ul>
-                    <li>
-                        <a href="https://github.com/NewAITees/TaskMateAI">TaskMateAI</a>
-                        <p>AI用タスク管理ツール：AIエージェントのタスク管理を効率化するWebアプリケーション</p>
-                    </li>
-                    <li>
-                        <p>AItuber用アプリ：バーチャルYouTuber向けのAI応答生成システム</p>
-                    </li>
-                    <li>
-                        <p>生成AI用ツール：Stable Diffusionなどの生成AIモデルを活用した画像生成補助ツール</p>
-                    </li>
-                </ul>
+                <div class="programming-content">
+                    <h3 data-i18n="programming.examples">例</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/NewAITees/TaskMateAI">TaskMateAI</a>
+                            <p data-i18n="programming.taskmate">AI用タスク管理ツール：AIエージェントのタスク管理を効率化するWebアプリケーション</p>
+                        </li>
+                        <li>
+                            <p data-i18n="programming.aituber_app">AItuber用アプリ：バーチャルYouTuber向けのAI応答生成システム</p>
+                        </li>
+                        <li>
+                            <p data-i18n="programming.gen_ai_tools">生成AI用ツール：Stable Diffusionなどの生成AIモデルを活用した画像生成補助ツール</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- ゲーム配信セクション -->
+        <!-- 配信活動セクション -->
         <section id="streaming" class="section streaming">
-            <h2 data-i18n="streaming.title">配信活動</h2>
-            <div class="streaming-content">
-                <p>現在Twitchにて、AITuberや生成AI、AICodingといった活動を配信しています。</p>
-                <p>登録していただければ、AI画像を一枚プレゼントします。</p>
+            <div class="container">
+                <h2 data-i18n="streaming.title">配信活動</h2>
+                <p data-i18n="streaming.description">現在Twitchにて、AITuberや生成AI、AICodingといった活動を配信しています。</p>
+                <p data-i18n="streaming.gift_info">登録していただければ、AI画像を一枚プレゼントします。</p>
                 
-                <div class="twitch-link">
-                    <a href="https://twitch.tv/japaneseotakuprogrammer" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-twitch"></i> Twitch
-                    </a>
+                <div class="streaming-content">
+                    <div class="twitch-link">
+                        <a href="https://twitch.tv/japaneseotakuprogrammer" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitch"></i> Twitch
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
