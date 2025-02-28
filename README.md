@@ -62,12 +62,12 @@ AIアートやプログラミング、ゲーム配信など、多彩な活動を
 
 - **ローカルで閲覧する場合**  
   ```bash
-  git clone https://github.com/yourusername/NewAITees.git
-  cd NewAITees
+git clone https://github.com/yourusername/NewAITees.git
+cd NewAITees
 
-  node gallery-generator.js
+node gallery-generator.js
 
-  npx http-server . # など、お好みのローカルサーバを利用
+npx http-server . # など、お好みのローカルサーバを利用
   ```
 - **多言語対応**  
   `navigator.language`を参考に自動判定し、切り替えUIを設置する予定です。  
