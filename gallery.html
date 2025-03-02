@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>New AI Tees - ギャラリー</title>
+    <meta name="description" content="NewAITeesのAIアート作品ギャラリー">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/optimize.css">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/js/main.js" as="script">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+    <!-- Open Graph tags for social media sharing -->
+    <meta property="og:title" content="NewAITees Gallery">
+    <meta property="og:description" content="AIアート作品ギャラリー">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://yourusername.github.io/gallery.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NewAITees Gallery">
+    <meta name="twitter:description" content="AIアート作品ギャラリー">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* ギャラリーページ固有のスタイル */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ヘッダーナビゲーションのスタイル */
+        .logo a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .main-nav ul li a.active {
+            color: var(--accent-color, #555);
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color, #555);
+        }
+        
+        /* モーダルナビゲーションボタン */
+        .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+        
+        .modal-nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        #prev-btn {
+            left: 10px;
+        }
+        
+        #next-btn {
+            right: 10px;
+        }
+        
+        .gallery-filters {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .filter-btn {
+            background-color: var(--button-bg-color, #f1f1f1);
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--accent-color, #555);
+            color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-item-info {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-info {
+            transform: translateY(0);
+        }
+        
+        /* モーダルスタイル */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: var(--accent-color, #333);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: var(--accent-hover-color, #555);
+        }
+        
+        .gallery-notice {
+            background-color: var(--light-bg-color, #f8f9fa);
+            border-left: 4px solid var(--primary-color, #007bff);
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-gap: 10px;
+            }
+            
+            .gallery-item img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <!-- ヘッダーコンテンツ -->
+        <div class="header-container">
+            <div class="logo"><a href="index.html">NewAITees</a></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">トップページ</a></li>
+                    <li><a href="gallery.html" class="active">ギャラリー</a></li>
+                    <li><a href="index.html#programming">プログラミング</a></li>
+                    <li><a href="index.html#streaming">配信活動</a></li>
+                    <li><a href="index.html#contact">連絡先</a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <button class="lang-btn" data-lang="ja" data-i18n="language.ja">日本語</button>
+                <button class="lang-btn" data-lang="en" data-i18n="language.en">English</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="gallery-container">
+            <a href="index.html" class="back-to-home">← トップページに戻る</a>
+            <h1>AIアートギャラリー</h1>
+            <p>様々なカテゴリのアート作品を紹介しています。カテゴリ別にフィルタリングしてご覧いただけます。</p>
+            
+            <div class="gallery-notice">
+                <p><strong>お知らせ:</strong> 各カテゴリの作品は最大10点まで表示されます。ページを再読み込みすると、異なる作品がランダムに表示されます。</p>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">すべて表示</button>
+                <!-- カテゴリボタンはJavaScriptで動的に生成されます -->
+            </div>
+            
+            <div class="gallery-grid" id="gallery">
+                <!-- ギャラリーアイテムはJavaScriptで動的に生成されます -->
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <p data-i18n="footer.copyright">&copy; 2025 NewAITees. All rights reserved.</p>
+            <p data-i18n="footer.rights">作品の再利用・再配布などはご相談をお願いいたします。</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/gallery.js"></script>
+</body>
+</html>

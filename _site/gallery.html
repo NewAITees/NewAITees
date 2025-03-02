@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ギャラリー - NewAITees</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .gallery-filters {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .filter-btn {
+            background-color: #f1f1f1;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background-color: #555;
+            color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-item-info {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-info {
+            transform: translateY(0);
+        }
+        
+        /* モーダルスタイル */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-gap: 10px;
+            }
+            
+            .gallery-item img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <a href="index.html" class="back-to-home">← トップページに戻る</a>
+        <h1>AIアートギャラリー</h1>
+        <p>様々なカテゴリのアート作品を紹介しています。カテゴリ別にフィルタリングしてご覧いただけます。</p>
+        
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">すべて表示</button>
+            <!-- カテゴリボタンはJavaScriptで動的に生成されます -->
+        </div>
+        
+        <div class="gallery-grid" id="gallery">
+            <!-- ギャラリーアイテムはJavaScriptで動的に生成されます -->
+        </div>
+    </div>
+    
+    <script>
+        // グローバル変数として宣言
+        let galleryData = [];
+        
+        // ギャラリーの初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // JSONファイルからデータを読み込む
+            fetch('./assets/js/gallery-data.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('JSONファイルが見つかりません');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('JSONからギャラリーデータを読み込みました', data.length + '件');
+                    galleryData = data;
+                    initGallery();
+                })
+                .catch(error => {
+                    console.error('JSONからの読み込みに失敗しました:', error);
+                    const gallery = document.getElementById('gallery');
+                    gallery.innerHTML = '<p>ギャラリーデータの読み込みに失敗しました。</p>';
+                });
+        });
+        
+        function initGallery() {
+            // カテゴリの収集
+            const categories = [...new Set(galleryData.map(item => item.category))];
+            
+            // カテゴリフィルターボタンの生成
+            const filtersContainer = document.querySelector('.gallery-filters');
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.classList.add('filter-btn');
+                button.setAttribute('data-filter', category);
+                button.textContent = formatCategoryName(category);
+                filtersContainer.appendChild(button);
+            });
+            
+            // ギャラリーアイテムの生成
+            const gallery = document.getElementById('gallery');
+            
+            // アイテムをランダムにシャッフル
+            const shuffledData = shuffleArray([...galleryData]);
+            
+            // シャッフルされたデータでギャラリーを生成
+            shuffledData.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.classList.add('gallery-item');
+                galleryItem.setAttribute('data-category', item.category);
+                
+                const title = item.title || formatFileName(item.alt);
+                
+                galleryItem.innerHTML = `
+                    <img src="${item.src}" alt="${item.alt}" onerror="this.src='./assets/placeholder.jpg'">
+                    <div class="gallery-item-info">
+                        <h3>${title}</h3>
+                        <p>カテゴリ: ${formatCategoryName(item.category)}</p>
+                    </div>
+                `;
+                
+                gallery.appendChild(galleryItem);
+            });
+            
+            // フィルタリング機能
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // ボタンのアクティブ状態を切り替え
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // アイテムの表示・非表示を切り替え
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // モーダル機能（画像クリックで拡大表示）
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const imgAlt = this.querySelector('img').alt;
+                    const modal = document.createElement('div');
+                    modal.classList.add('gallery-modal');
+                    
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="modal-close">&times;</span>
+                            <img src="${imgSrc}" alt="${imgAlt}">
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    document.body.style.overflow = 'hidden';
+                    
+                    // モーダルを閉じる
+                    modal.querySelector('.modal-close').addEventListener('click', function() {
+                        document.body.removeChild(modal);
+                        document.body.style.overflow = '';
+                    });
+                    
+                    // 背景クリックでも閉じる
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal) {
+                            document.body.removeChild(modal);
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+            });
+        }
+        
+        // カテゴリ名をフォーマット
+        function formatCategoryName(category) {
+            return category
+                .replace(/_/g, ' ')
+                .replace(/\b\w/g, char => char.toUpperCase());
+        }
+        
+        // ファイル名から表示用タイトルを生成
+        function formatFileName(fileName) {
+            return fileName
+                .replace(/[0-9-_\.]/g, ' ')
+                .trim();
+        }
+        
+        // 配列をランダムにシャッフルする関数（Fisher-Yatesアルゴリズム）
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NewAITees - AIアート・プログラミング・ゲーム配信</title>
+    <meta name="description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/optimize.css">
+
+    <!-- Preload critical assets -->
+    <!-- <link rel="preload" href="assets/css/main.css" as="style"> -->
+    <link rel="preload" href="assets/js/main.js" as="script">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+    <!-- Open Graph tags for social media sharing -->
+    <meta property="og:title" content="Your Portfolio">
+    <meta property="og:description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://yourusername.github.io">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Portfolio">
+    <meta name="twitter:description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* ロゴとナビゲーションのスタイル */
+        .logo a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .main-nav ul li a.active {
+            color: var(--accent-color, #555);
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color, #555);
+        }
+        
+        /* ギャラリーモーダルのスタイル */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .modal-content {
+            margin: 5% auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .view-more-btn {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: var(--accent-color, #333);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .view-more-btn:hover {
+            background-color: var(--accent-hover-color, #555);
+        }
+    </style>
+
+</head>
+<body>
+    <header id="header">
+        <!-- ヘッダーコンテンツ -->
+        <div class="header-container">
+            <div class="logo"><a href="index.html">NewAITees</a></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">トップページ</a></li>
+                    <li><a href="#gallery-preview-section">ギャラリー</a></li>
+                    <li><a href="#programming">プログラミング</a></li>
+                    <li><a href="#streaming">配信活動</a></li>
+                    <li><a href="#contact">連絡先</a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <button class="lang-btn" data-lang="ja" data-i18n="language.ja">日本語</button>
+                <button class="lang-btn" data-lang="en" data-i18n="language.en">English</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- メインビジュアル -->
+        <section id="main-visual" class="section main-visual">
+            <div class="main-visual-container">
+                <h1 data-i18n="main.title">NewAITees</h1>
+                <p data-i18n="main.subtitle">AIアートやプログラミング、ゲーム配信など、多彩な活動を集約した個人活動</p>
+            </div>
+        </section>
+
+        <!-- ギャラリープレビューセクション -->
+        <section id="gallery-preview-section" class="gallery-preview-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="gallery.title">作品ギャラリー</h2>
+                <p class="section-description" data-i18n="gallery.description">最新のAIアート作品からランダムに選ばれた作品をご紹介します</p>
+                
+                <div class="home-gallery" id="home-gallery">
+                    <!-- ここにJavaScriptで画像がランダムに挿入されます -->
+                </div>
+                
+                <div class="view-more-container">
+                    <a href="gallery.html" class="view-more-btn">ギャラリーをもっと見る</a>
+                </div>
+
+                <!-- Tシャツ販売情報 -->
+                <div class="tshirt-info">
+                    <p data-i18n="gallery.tshirt_info">今までに作成したAIアートを貼り付けたTシャツを販売しています</p>
+                    <p>ページは<a href="https://www.ttrinity.jp/shop/newAItees/" data-i18n="gallery.japan_shop">こちら</a></p>
+                    <p data-i18n="gallery.global_shop">If you want to purchase my T-shirts from outside of Japan, please visit <a href="https://monster-maker.creator-spring.com/">here</a></p>
+                    <p data-i18n="gallery.request_info">今までに作成したAIアート作品の中でTシャツにしてほしい作品がありましたらリクエストからご連絡ください</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- プログラミング活動セクション -->
+        <section id="programming" class="section programming">
+            <div class="container">
+                <h2 data-i18n="programming.title">プログラミング活動</h2>
+                <p data-i18n="programming.description">主にAITuberや、生成AI、ModelContextProtocol（MCP）などの分野にかかわるプログラミング活動を行っています。</p>
+                
+                <div class="programming-content">
+                    <h3 data-i18n="programming.examples">例</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/NewAITees/TaskMateAI">TaskMateAI</a>
+                            <p data-i18n="programming.taskmate">AI用タスク管理ツール：AIエージェントのタスク管理を効率化するWebアプリケーション</p>
+                        </li>
+                        <li>
+                            <p data-i18n="programming.aituber_app">AItuber用アプリ：バーチャルYouTuber向けのAI応答生成システム</p>
+                        </li>
+                        <li>
+                            <p data-i18n="programming.gen_ai_tools">生成AI用ツール：Stable Diffusionなどの生成AIモデルを活用した画像生成補助ツール</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 配信活動セクション -->
+        <section id="streaming" class="section streaming">
+            <div class="container">
+                <h2 data-i18n="streaming.title">配信活動</h2>
+                <p data-i18n="streaming.description">現在Twitchにて、AITuberや生成AI、AICodingといった活動を配信しています。</p>
+                <p data-i18n="streaming.gift_info">登録していただければ、AI画像を一枚プレゼントします。</p>
+                
+                <div class="streaming-content">
+                    <div class="twitch-link">
+                        <a href="https://twitch.tv/japaneseotakuprogrammer" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitch"></i> Twitch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact & SNS Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contact.title">Contact & SNS</h2>
+                <p class="section-description" data-i18n="contact.description">お問い合わせやSNSでのフォロー</p>
+                
+                <div class="contact-grid">
+                    <!-- SNS Links -->
+                    <div class="sns-links">
+                        <h3 data-i18n="contact.follow">フォローする</h3>
+                        <div class="sns-icons">
+                            <a href="https://instagram.com/new_ai_tees/" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                            <a href="https://github.com/NewAITees/NewAITees" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="GitHub">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitch.tv/japaneseotakuprogrammer" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h3 data-i18n="contact.info">連絡先</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:newaitees@gmail.com">newaitees@gmail.com</a>
+                            </li>
+                            <!-- 
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://ai-portfolio.jp" target="_blank" rel="noopener noreferrer">https://ai-portfolio.jp</a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- GitHub Issues for Questions -->
+                <div class="github-issues">
+                    <h3 data-i18n="contact.questions">ご質問やフィードバック</h3>
+                    <p data-i18n="contact.issues">ご質問やフィードバックがございましたら、GitHubでIssueを作成してください：</p>
+                    <a href="https://github.com/newaitees/newaitees/issues/new" target="_blank" rel="noopener noreferrer" class="github-button">
+                        <i class="fas fa-comment-alt"></i>
+                        <span data-i18n="contact.openIssue">Issueを作成する</span>
+                    </a>
+                    <div class="issue-guidelines">
+                        <h4 data-i18n="contact.guidelines">Issue作成のガイドライン</h4>
+                        <ul>
+                            <li data-i18n="contact.guidelines1">新しいIssueを作成する前に、既存のIssueをご確認ください</li>
+                            <li data-i18n="contact.guidelines2">明確でわかりやすいタイトルをつけてください</li>
+                            <li data-i18n="contact.guidelines3">できるだけ詳細な情報を含めてください</li>
+                            <li data-i18n="contact.guidelines4">適用可能な場合はラベルを追加してください</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <p data-i18n="footer.copyright">&copy; 2025 NewAITees. All rights reserved.</p>
+            <p data-i18n="footer.rights">作品の再利用・再配布などはご相談をお願いいたします。</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/gallery.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/home-gallery.js"></script>
+</body>
+</html>

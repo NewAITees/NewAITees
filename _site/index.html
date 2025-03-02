@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NewAITees - AIアート・プログラミング・ゲーム配信</title>
+    <meta name="description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Preload critical assets -->
+    <!-- <link rel="preload" href="css/main.css" as="style"> -->
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+    <!-- Open Graph tags for social media sharing -->
+    <meta property="og:title" content="Your Portfolio">
+    <meta property="og:description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://yourusername.github.io">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Portfolio">
+    <meta name="twitter:description" content="Portfolio website showcasing illustrations, programming projects, and game streaming activities">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .gallery-preview-section {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+
+        .home-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .home-gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .home-gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .home-gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .home-gallery-item-info {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .home-gallery-item:hover .home-gallery-item-info {
+            transform: translateY(0);
+        }
+
+        .view-more-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .view-more-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .view-more-btn:hover {
+            background-color: #555;
+        }
+
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .home-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-gap: 15px;
+            }
+            
+            .home-gallery-item img {
+                height: 150px;
+            }
+        }
+
+        /* SNSアイコンのスタイル改善 */
+        .sns-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .sns-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .sns-icon:hover {
+            background-color: #eaeaea;
+            transform: translateY(-2px);
+        }
+        
+        .sns-icon i {
+            font-size: 1.2rem;
+        }
+        
+        /* Twitchのアイコンカラー */
+        .sns-icon[aria-label="Twitch"] i {
+            color: #6441a5;
+        }
+        
+        /* GitHubのアイコンカラー */
+        .sns-icon[aria-label="GitHub"] i {
+            color: #333;
+        }
+        
+        /* Instagramのアイコンカラー */
+        .sns-icon[aria-label="Instagram"] i {
+            color: #e1306c;
+        }
+        
+        @media (max-width: 768px) {
+            .sns-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <!-- ヘッダーコンテンツ -->
+        <div class="header-container">
+            <div class="logo">NewAITees</div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#gallery" data-i18n="nav.gallery">ギャラリー</a></li>
+                    <li><a href="#programming" data-i18n="nav.programming">プログラミング</a></li>
+                    <li><a href="#streaming" data-i18n="nav.streaming">ゲーム配信</a></li>
+                    <li><a href="#contact" data-i18n="nav.contact">連絡先</a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <button class="lang-btn" data-lang="ja">日本語</button>
+                <button class="lang-btn" data-lang="en">English</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- メインビジュアル -->
+        <section id="main-visual" class="section main-visual">
+            <div class="main-visual-container">
+                <h1 data-i18n="main.title">NewAITees</h1>
+                <p data-i18n="main.subtitle">AIアートやプログラミング、ゲーム配信など、多彩な活動を集約した個人プロジェクト</p>
+            </div>
+        </section>
+
+        <!-- ギャラリープレビューセクション -->
+        <section class="gallery-preview-section">
+            <div class="container">
+                <h2 class="section-title">作品ギャラリー</h2>
+                <p class="section-description">最新のAIアート作品からランダムに選ばれた作品をご紹介します</p>
+                
+                <div class="home-gallery" id="home-gallery">
+                    <!-- ここにJavaScriptで画像がランダムに挿入されます -->
+                </div>
+                
+                <div class="view-more-container">
+                    <a href="gallery.html" class="view-more-btn">ギャラリーをもっと見る</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- プログラミング活動セクション -->
+        <section id="programming" class="section programming">
+            <h2 data-i18n="programming.title">プログラミング活動</h2>
+            <div class="programming-content">
+                <!-- プログラミング関連コンテンツ（後で詳細実装） -->
+            </div>
+        </section>
+
+        <!-- ゲーム配信セクション -->
+        <section id="streaming" class="section streaming">
+            <h2 data-i18n="streaming.title">ゲーム配信</h2>
+            <div class="streaming-content">
+                <!-- 配信関連コンテンツ（後で詳細実装） -->
+            </div>
+        </section>
+        <!-- Contact & SNS Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contact.title">Contact & SNS</h2>
+                <p class="section-description" data-i18n="contact.description">Get in touch or follow me on social media</p>
+                
+                <div class="contact-grid">
+                    <!-- SNS Links -->
+                    <div class="sns-links">
+                        <h3 data-i18n="contact.follow">Follow Me</h3>
+                        <div class="sns-icons">
+                            <a href="https://instagram.com/new_ai_tees/" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                            <a href="https://github.com/NewAITees/NewAITees" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="GitHub">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitch.tv/japaneseotakuprogrammer" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h3 data-i18n="contact.info">Contact Information</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:newaitees@gmail.com">newaitees@gmail.com</a>
+                            </li>
+                            <!-- 
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://ai-portfolio.jp" target="_blank" rel="noopener noreferrer">https://ai-portfolio.jp</a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- GitHub Issues for Questions -->
+                <div class="github-issues">
+                    <h3 data-i18n="contact.questions">Questions or Feedback?</h3>
+                    <p data-i18n="contact.issues">If you have questions or feedback, please open an issue on GitHub:</p>
+                    <a href="https://github.com/newaitees/newaitees/issues/new" target="_blank" rel="noopener noreferrer" class="github-button">
+                        <i class="fas fa-comment-alt"></i>
+                        <span data-i18n="contact.openIssue">Open an Issue</span>
+                    </a>
+                    <div class="issue-guidelines">
+                        <h4 data-i18n="contact.guidelines">Guidelines for Issues</h4>
+                        <ul>
+                            <li data-i18n="contact.guidelines.1">Check existing issues before creating a new one</li>
+                            <li data-i18n="contact.guidelines.2">Use a clear and descriptive title</li>
+                            <li data-i18n="contact.guidelines.3">Include as much detail as possible</li>
+                            <li data-i18n="contact.guidelines.4">Add labels to categorize your issue (if applicable)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <p data-i18n="footer.copyright">&copy; 2025 NewAITees. All rights reserved.</p>
+            <p data-i18n="footer.rights">作品の再利用・再配布などはご相談をお願いいたします。</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/i18n.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/main.js"></script>
+    <script src="assets/js/home-gallery.js"></script>
+</body>
+</html>
