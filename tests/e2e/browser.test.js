@@ -391,6 +391,14 @@ describe('ブラウザテスト', () => {
     const galleryElement = await page.$('.gallery-container');
     expect(galleryElement).not.toBeNull();
     
+    // フィルターボタンが表示されていることを確認
+    const filterButtons = await page.$$('.filter-btn');
+    expect(filterButtons.length).toBeGreaterThan(0);
+    
+    // ヘッダーナビゲーションのアクティブクラスを確認
+    const activeNavLink = await page.$('.main-nav ul li a.active');
+    expect(activeNavLink).not.toBeNull();
+    
     // リソースエラーがないか確認
     expect(requestErrors.length).toBe(0);
   });
@@ -426,5 +434,154 @@ describe('ブラウザテスト', () => {
     });
     
     expect(pathIssues.length).toBe(0);
+    
+    // コンソールにエラーがないか確認
+    const consoleErrors = [];
+    page.on('console', msg => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+    
+    // ページの再読み込み
+    await page.reload({ waitUntil: 'networkidle2' });
+    
+    // エラーがないことを確認
+    expect(consoleErrors.length).toBe(0);
+  });
+  
+  test('トップページの画像パスが正しく、すべての画像が表示される', async () => {
+    // WSL環境チェック
+    const isWSL = process.platform === 'linux' && fs.existsSync('/proc/version') && 
+                 fs.readFileSync('/proc/version', 'utf-8').toLowerCase().includes('microsoft');
+    
+    if (isWSL || !browser || !page) {
+      console.log('WSLでのブラウザテストはスキップします。必要なら手動で設定してください。');
+      return;
+    }
+    
+    // トップページを開く
+    await page.goto(`http://localhost:${testPort}/index.html`, {
+      waitUntil: 'networkidle2',
+      timeout: 10000
+    });
+    
+    // ネットワークリクエストを監視し、404エラーを検出する
+    const failedRequests = [];
+    page.on('requestfailed', request => {
+      const url = request.url();
+      const failure = request.failure();
+      failedRequests.push({
+        url,
+        errorText: failure ? failure.errorText : 'unknown error'
+      });
+      console.log(`リクエスト失敗: ${url}, エラー: ${failure ? failure.errorText : 'unknown'}`);
+    });
+    
+    // ページ上の全ての画像を取得
+    const imageElements = await page.$$('#home-gallery img');
+    logDebug(`トップページに表示されている画像数: ${imageElements.length}`);
+    
+    // home-galleryにはランダムに選ばれた5枚の画像があるはず
+    expect(imageElements.length).toBeGreaterThan(0);
+    
+    // 全画像のSRCを取得
+    const imageSrcs = await page.$$eval('#home-gallery img', imgs => imgs.map(img => img.src));
+    
+    // 各画像のパスをログ出力
+    for (const src of imageSrcs) {
+      logDebug(`画像パス: ${src}`);
+    }
+    
+    // パスの問題を検出
+    const badPaths = imageSrcs.filter(src => {
+      return (
+        src.includes('assets/assets/') || // 重複したassetsパス
+        src.includes('undefined') ||      // undefinedを含むパス
+        src.includes('null') ||           // nullを含むパス
+        src.includes('NaN')               // NaNを含むパス
+      );
+    });
+    
+    // 問題のあるパスがないことを確認
+    expect(badPaths).toEqual([]);
+    expect(badPaths.length).toBe(0);
+    
+    // 失敗したリクエストがないことを確認
+    const assetFailures = failedRequests.filter(req => 
+      req.url.includes('assets/') && 
+      !req.url.includes('favicon.ico') // faviconは除外
+    );
+    
+    if (assetFailures.length > 0) {
+      console.log('失敗したアセットリクエスト:', assetFailures);
+    }
+    
+    expect(assetFailures.length).toBe(0);
+    
+    // コンソールエラーを確認
+    const consoleErrors = [];
+    page.on('console', msg => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+        console.log('コンソールエラー:', msg.text());
+      }
+    });
+    
+    // ページを再読み込みして、イベントリスナーが捕捉できるようにする
+    await page.reload({ waitUntil: 'networkidle2' });
+    
+    // コンソールエラーがないことを確認
+    expect(consoleErrors.filter(err => 
+      !err.includes('favicon.ico') && // faviconエラーは無視
+      !err.includes('net::ERR_ABORTED') // 中断エラーも無視
+    ).length).toBe(0);
+  });
+  
+  test('ナビゲーションリンクが正しく機能する', async () => {
+    // WSL環境チェック
+    const isWSL = process.platform === 'linux' && fs.existsSync('/proc/version') && 
+                fs.readFileSync('/proc/version', 'utf-8').toLowerCase().includes('microsoft');
+    
+    if (isWSL || !browser || !page) {
+      console.log('WSLでのブラウザテストはスキップします。必要なら手動で設定してください。');
+      return;
+    }
+    
+    // ギャラリーページを開く
+    await page.goto(`http://localhost:${testPort}/gallery.html`, {
+      waitUntil: 'networkidle2',
+      timeout: 10000
+    });
+    
+    // トップページへのリンクをクリック
+    const topPageLink = await page.$('.main-nav ul li:first-child a');
+    expect(topPageLink).not.toBeNull();
+    
+    await Promise.all([
+      page.waitForNavigation({ waitUntil: 'networkidle2' }),
+      topPageLink.click()
+    ]);
+    
+    // トップページに移動したことを確認
+    const url = page.url();
+    expect(url).toBe(`http://localhost:${testPort}/index.html`);
+    
+    // ロゴからもトップページに移動できることを確認
+    await page.goto(`http://localhost:${testPort}/gallery.html`, {
+      waitUntil: 'networkidle2'
+    });
+    
+    const logoLink = await page.$('.logo a');
+    expect(logoLink).not.toBeNull();
+    
+    await Promise.all([
+      page.waitForNavigation({ waitUntil: 'networkidle2' }),
+      logoLink.click()
+    ]);
+    
+    // トップページに移動したことを確認
+    const urlAfterLogoClick = page.url();
+    expect(urlAfterLogoClick).toBe(`http://localhost:${testPort}/index.html`);
   });
 }); 

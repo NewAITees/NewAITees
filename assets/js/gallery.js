@@ -350,29 +350,242 @@ window.initGallery = async function() {
     const response = await fetch('./assets/js/gallery-data.json');
     const galleryData = await response.json();
     
+    // gallery-data.jsonはすでに配列形式なので、カテゴリでグループ化する
+    const categoriesMap = {};
+    
+    // 画像をカテゴリごとに分類
+    galleryData.forEach(item => {
+      if (!categoriesMap[item.category]) {
+        categoriesMap[item.category] = [];
+      }
+      // パスの重複を修正 (./assets/ が既にある場合は調整)
+      if (item.src.startsWith('./assets/')) {
+        item.src = item.src; // そのまま保持
+      } else if (item.src.startsWith('assets/')) {
+        item.src = './' + item.src; // ./を追加
+      }
+      
+      // サムネイル用のパスを追加
+      item.thumbnail = item.src;
+      
+      // カテゴリ情報を配列形式に変換
+      item.categories = [item.category];
+      
+      categoriesMap[item.category].push(item);
+    });
+    
     // 各カテゴリごとに最大10件までの画像に制限
     const MAX_IMAGES_PER_CATEGORY = 10;
-    let limitedGalleryData = {};
+    const limitedImages = [];
     
-    // 各カテゴリのデータを制限
-    Object.keys(galleryData).forEach(category => {
-      limitedGalleryData[category] = galleryData[category].slice(0, MAX_IMAGES_PER_CATEGORY);
+    // 各カテゴリのデータを制限して統合
+    Object.keys(categoriesMap).forEach(category => {
+      const limitedCategory = categoriesMap[category].slice(0, MAX_IMAGES_PER_CATEGORY);
+      limitedImages.push(...limitedCategory);
     });
     
-    // 初期化済みのフィルタリング済み画像
-    const filteredImages = [];
-    Object.keys(limitedGalleryData).forEach(category => {
-      limitedGalleryData[category].forEach(item => {
-        filteredImages.push(item);
-      });
-    });
+    // ギャラリーの初期化済み画像としてセット
+    window.galleryImages = limitedImages;
+    
+    // フィルターボタンを生成
+    generateFilterButtons(Object.keys(categoriesMap));
     
     // renderGallery関数を呼び出して画像を表示
-    renderGallery(filteredImages);
+    window.renderGallery(limitedImages);
     
-    return limitedGalleryData;
+    return limitedImages;
   } catch (error) {
     console.error('Gallery initialization failed:', error);
     throw error;
   }
 };
+
+/**
+ * カテゴリフィルターボタンを生成する
+ * @param {Array} categories カテゴリ一覧
+ */
+function generateFilterButtons(categories) {
+  const filtersContainer = document.querySelector('.gallery-filters');
+  if (!filtersContainer) return;
+  
+  // 既存のボタン（"すべて表示"以外）を削除
+  const existingButtons = filtersContainer.querySelectorAll('.filter-btn:not([data-filter="all"])');
+  existingButtons.forEach(btn => btn.remove());
+  
+  // カテゴリごとにボタンを追加
+  categories.forEach(category => {
+    const button = document.createElement('button');
+    button.className = 'filter-btn';
+    button.dataset.filter = category;
+    button.textContent = formatCategoryName(category);
+    
+    // クリックイベントを追加
+    button.addEventListener('click', () => {
+      // アクティブボタンの更新
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // フィルタリング実行
+      const filtered = category === 'all' 
+        ? window.galleryImages 
+        : window.galleryImages.filter(img => img.categories.includes(category));
+      window.renderGallery(filtered);
+    });
+    
+    filtersContainer.appendChild(button);
+  });
+  
+  // "すべて表示"ボタンのイベントリスナーを追加
+  const allButton = filtersContainer.querySelector('.filter-btn[data-filter="all"]');
+  if (allButton) {
+    allButton.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      allButton.classList.add('active');
+      window.renderGallery(window.galleryImages);
+    });
+  }
+}
+
+/**
+ * カテゴリ名を表示用にフォーマット
+ * @param {string} category カテゴリ名
+ * @returns {string} 表示用カテゴリ名
+ */
+function formatCategoryName(category) {
+  return category
+    .replace(/_/g, ' ')
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+/**
+ * ギャラリーを描画する関数
+ * @param {Array} images 表示する画像の配列
+ */
+window.renderGallery = function(images) {
+  const galleryContainer = document.getElementById('gallery');
+  if (!galleryContainer) return;
+  
+  // ギャラリーをクリア
+  galleryContainer.innerHTML = '';
+  
+  if (images.length === 0) {
+    galleryContainer.innerHTML = '<p class="no-results">このカテゴリの画像はありません。</p>';
+    return;
+  }
+  
+  // 画像を表示
+  images.forEach((image, index) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    
+    const img = document.createElement('img');
+    img.src = image.thumbnail || image.src;
+    img.alt = image.alt || image.title || '';
+    img.loading = 'lazy';
+    
+    const info = document.createElement('div');
+    info.className = 'gallery-item-info';
+    
+    const title = document.createElement('h3');
+    title.textContent = image.title || formatCategoryName(image.category);
+    
+    const desc = document.createElement('p');
+    desc.textContent = image.description || '';
+    
+    info.appendChild(title);
+    info.appendChild(desc);
+    
+    item.appendChild(img);
+    item.appendChild(info);
+    
+    // クリックイベントでモーダル表示
+    item.addEventListener('click', () => {
+      openImageModal(image, index, images);
+    });
+    
+    galleryContainer.appendChild(item);
+  });
+};
+
+/**
+ * 画像モーダルを開く
+ * @param {Object} image 画像データ
+ * @param {number} index インデックス
+ * @param {Array} images 画像配列
+ */
+function openImageModal(image, index, images) {
+  // 既存のモーダルを探す
+  let modal = document.getElementById('gallery-modal');
+  
+  // モーダルがなければ作成
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'gallery-modal';
+    modal.className = 'gallery-modal';
+    
+    // モーダルの内容を作成
+    modal.innerHTML = `
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <img id="modal-img" src="" alt="">
+        <div id="modal-caption"></div>
+        <button id="prev-btn" class="modal-nav-btn">&#10094;</button>
+        <button id="next-btn" class="modal-nav-btn">&#10095;</button>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // 閉じるボタンのイベント
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    // モーダル外クリックで閉じる
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  }
+  
+  // モーダル内の要素を取得
+  const modalImg = document.getElementById('modal-img');
+  const modalCaption = document.getElementById('modal-caption');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  
+  // 画像とキャプションを設定
+  modalImg.src = image.src;
+  modalCaption.textContent = image.title || formatCategoryName(image.category);
+  
+  // ナビゲーションボタンの制御
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === images.length - 1;
+  
+  // 前後の画像に移動するイベント
+  prevBtn.onclick = () => {
+    if (index > 0) {
+      openImageModal(images[index - 1], index - 1, images);
+    }
+  };
+  
+  nextBtn.onclick = () => {
+    if (index < images.length - 1) {
+      openImageModal(images[index + 1], index + 1, images);
+    }
+  };
+  
+  // モーダルを表示
+  modal.style.display = 'block';
+}
+
+// ページ読み込み完了時にギャラリーを初期化
+document.addEventListener('DOMContentLoaded', () => {
+  window.initGallery().catch(error => {
+    console.error('Gallery initialization error:', error);
+  });
+});
