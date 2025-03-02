@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # この行を追加して書き込み権限を付与
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
