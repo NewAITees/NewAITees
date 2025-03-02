@@ -55,7 +55,7 @@ function initHomeGallery() {
             const title = item.title || formatFileName(item.alt);
             
             galleryItem.innerHTML = `
-                <img src="${item.src}" alt="${item.alt}" onerror="this.src='./assets/images/247-958349849-0-12.png'">
+                <img src="${item.src}" alt="${item.alt}" onerror="this.src='./images/247-958349849-0-12.png'">
                 <div class="home-gallery-item-info">
                     <h3>${title}</h3>
                     <p>${formatCategoryName(item.category)}</p>

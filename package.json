@@ -1,0 +1,36 @@
+{
+  "name": "newaitees",
+  "version": "1.0.0",
+  "description": "AIアート・プログラミング・ゲーム配信サイト",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:path": "node tests/utils/path-validator.js",
+    "lint": "eslint assets/js/",
+    "serve": "http-server -p 8080"
+  },
+  "keywords": [
+    "ai-art",
+    "programming",
+    "portfolio"
+  ],
+  "author": "NewAITees",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "http-server": "^14.1.1",
+    "eslint": "^8.56.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "puppeteer": "^22.0.0"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFiles": ["./jest.setup.js"]
+  }
+} 

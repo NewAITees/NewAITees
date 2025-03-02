@@ -1,0 +1,128 @@
+/* Contact & SNS Section Styles */
+.contact-section {
+  padding: 3rem 0;
+  background-color: var(--bg-color-alt);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sns-links h3, .contact-info h3, .github-issues h3 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.sns-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sns-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.sns-icon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contact-list li i {
+  margin-right: 1rem;
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+}
+
+.contact-list a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-list a:hover {
+  color: var(--primary-color);
+}
+
+.github-issues {
+  padding: 2rem;
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.github-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+.github-button i {
+  margin-right: 0.5rem;
+}
+
+.github-button:hover {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-2px);
+}
+
+.issue-guidelines {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: var(--bg-color-light);
+  border-left: 3px solid var(--secondary-color);
+  border-radius: 0 5px 5px 0;
+}
+
+.issue-guidelines h4 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.issue-guidelines ul {
+  padding-left: 1.5rem;
+}
+
+.issue-guidelines li {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sns-icons {
+    justify-content: center;
+  }
+} 

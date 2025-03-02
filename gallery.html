@@ -3,30 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ギャラリー - NewAITees</title>
+    <meta name="description" content="NewAITeesのAIアート作品ギャラリー">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/optimize.css">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/js/main.js" as="script">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+    <!-- Open Graph tags for social media sharing -->
+    <meta property="og:title" content="NewAITees Gallery">
+    <meta property="og:description" content="AIアート作品ギャラリー">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://yourusername.github.io/gallery.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NewAITees Gallery">
+    <meta name="twitter:description" content="AIアート作品ギャラリー">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        p {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
+        /* ギャラリーページ固有のスタイル */
         .gallery-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -39,7 +48,7 @@
         }
         
         .filter-btn {
-            background-color: #f1f1f1;
+            background-color: var(--button-bg-color, #f1f1f1);
             border: none;
             padding: 8px 16px;
             margin: 5px;
@@ -49,7 +58,7 @@
         }
         
         .filter-btn.active {
-            background-color: #555;
+            background-color: var(--accent-color, #555);
             color: white;
         }
         
@@ -134,7 +143,7 @@
             display: inline-block;
             margin: 20px 0;
             padding: 10px 20px;
-            background-color: #333;
+            background-color: var(--accent-color, #333);
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -142,7 +151,15 @@
         }
         
         .back-to-home:hover {
-            background-color: #555;
+            background-color: var(--accent-hover-color, #555);
+        }
+        
+        .gallery-notice {
+            background-color: var(--light-bg-color, #f8f9fa);
+            border-left: 4px solid var(--primary-color, #007bff);
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
         }
         
         @media (max-width: 768px) {
@@ -158,166 +175,56 @@
     </style>
 </head>
 <body>
-    <div class="gallery-container">
-        <a href="index.html" class="back-to-home">← トップページに戻る</a>
-        <h1>AIアートギャラリー</h1>
-        <p>様々なカテゴリのアート作品を紹介しています。カテゴリ別にフィルタリングしてご覧いただけます。</p>
-        
-        <div class="gallery-filters">
-            <button class="filter-btn active" data-filter="all">すべて表示</button>
-            <!-- カテゴリボタンはJavaScriptで動的に生成されます -->
+    <header id="header">
+        <!-- ヘッダーコンテンツ -->
+        <div class="header-container">
+            <div class="logo">NewAITees</div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.gallery">ギャラリー</a></li>
+                    <li><a href="index.html" data-i18n="nav.programming">プログラミング</a></li>
+                    <li><a href="index.html" data-i18n="nav.streaming">配信活動</a></li>
+                    <li><a href="index.html" data-i18n="nav.contact">連絡先</a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <button class="lang-btn" data-lang="ja" data-i18n="language.ja">日本語</button>
+                <button class="lang-btn" data-lang="en" data-i18n="language.en">English</button>
+            </div>
         </div>
-        
-        <div class="gallery-grid" id="gallery">
-            <!-- ギャラリーアイテムはJavaScriptで動的に生成されます -->
+    </header>
+
+    <main>
+        <div class="gallery-container">
+            <a href="index.html" class="back-to-home">← トップページに戻る</a>
+            <h1>AIアートギャラリー</h1>
+            <p>様々なカテゴリのアート作品を紹介しています。カテゴリ別にフィルタリングしてご覧いただけます。</p>
+            
+            <div class="gallery-notice">
+                <p><strong>お知らせ:</strong> 各カテゴリの作品は最大10点まで表示されます。ページを再読み込みすると、異なる作品がランダムに表示されます。</p>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">すべて表示</button>
+                <!-- カテゴリボタンはJavaScriptで動的に生成されます -->
+            </div>
+            
+            <div class="gallery-grid" id="gallery">
+                <!-- ギャラリーアイテムはJavaScriptで動的に生成されます -->
+            </div>
         </div>
-    </div>
-    
-    <script>
-        // グローバル変数として宣言
-        let galleryData = [];
-        
-        // ギャラリーの初期化
-        document.addEventListener('DOMContentLoaded', function() {
-            // JSONファイルからデータを読み込む
-            fetch('./assets/js/gallery-data.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('JSONファイルが見つかりません');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('JSONからギャラリーデータを読み込みました', data.length + '件');
-                    galleryData = data;
-                    initGallery();
-                })
-                .catch(error => {
-                    console.error('JSONからの読み込みに失敗しました:', error);
-                    const gallery = document.getElementById('gallery');
-                    gallery.innerHTML = '<p>ギャラリーデータの読み込みに失敗しました。</p>';
-                });
-        });
-        
-        function initGallery() {
-            // カテゴリの収集
-            const categories = [...new Set(galleryData.map(item => item.category))];
-            
-            // カテゴリフィルターボタンの生成
-            const filtersContainer = document.querySelector('.gallery-filters');
-            categories.forEach(category => {
-                const button = document.createElement('button');
-                button.classList.add('filter-btn');
-                button.setAttribute('data-filter', category);
-                button.textContent = formatCategoryName(category);
-                filtersContainer.appendChild(button);
-            });
-            
-            // ギャラリーアイテムの生成
-            const gallery = document.getElementById('gallery');
-            
-            // アイテムをランダムにシャッフル
-            const shuffledData = shuffleArray([...galleryData]);
-            
-            // シャッフルされたデータでギャラリーを生成
-            shuffledData.forEach(item => {
-                const galleryItem = document.createElement('div');
-                galleryItem.classList.add('gallery-item');
-                galleryItem.setAttribute('data-category', item.category);
-                
-                const title = item.title || formatFileName(item.alt);
-                
-                galleryItem.innerHTML = `
-                    <img src="${item.src}" alt="${item.alt}" onerror="this.src='./assets/placeholder.jpg'">
-                    <div class="gallery-item-info">
-                        <h3>${title}</h3>
-                        <p>カテゴリ: ${formatCategoryName(item.category)}</p>
-                    </div>
-                `;
-                
-                gallery.appendChild(galleryItem);
-            });
-            
-            // フィルタリング機能
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    // ボタンのアクティブ状態を切り替え
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // アイテムの表示・非表示を切り替え
-                    galleryItems.forEach(item => {
-                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // モーダル機能（画像クリックで拡大表示）
-            galleryItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const imgSrc = this.querySelector('img').src;
-                    const imgAlt = this.querySelector('img').alt;
-                    const modal = document.createElement('div');
-                    modal.classList.add('gallery-modal');
-                    
-                    modal.innerHTML = `
-                        <div class="modal-content">
-                            <span class="modal-close">&times;</span>
-                            <img src="${imgSrc}" alt="${imgAlt}">
-                        </div>
-                    `;
-                    
-                    document.body.appendChild(modal);
-                    document.body.style.overflow = 'hidden';
-                    
-                    // モーダルを閉じる
-                    modal.querySelector('.modal-close').addEventListener('click', function() {
-                        document.body.removeChild(modal);
-                        document.body.style.overflow = '';
-                    });
-                    
-                    // 背景クリックでも閉じる
-                    modal.addEventListener('click', function(e) {
-                        if (e.target === modal) {
-                            document.body.removeChild(modal);
-                            document.body.style.overflow = '';
-                        }
-                    });
-                });
-            });
-        }
-        
-        // カテゴリ名をフォーマット
-        function formatCategoryName(category) {
-            return category
-                .replace(/_/g, ' ')
-                .replace(/\b\w/g, char => char.toUpperCase());
-        }
-        
-        // ファイル名から表示用タイトルを生成
-        function formatFileName(fileName) {
-            return fileName
-                .replace(/[0-9-_\.]/g, ' ')
-                .trim();
-        }
-        
-        // 配列をランダムにシャッフルする関数（Fisher-Yatesアルゴリズム）
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-    </script>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <p data-i18n="footer.copyright">&copy; 2025 NewAITees. All rights reserved.</p>
+            <p data-i18n="footer.rights">作品の再利用・再配布などはご相談をお願いいたします。</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/gallery.js"></script>
 </body>
-</html> 
+</html>

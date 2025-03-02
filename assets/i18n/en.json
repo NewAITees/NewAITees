@@ -1,0 +1,76 @@
+{
+  "nav": {
+    "gallery": "Gallery",
+    "programming": "Programming",
+    "streaming": "Game Streaming",
+    "contact": "Contact"
+  },
+  "main": {
+    "title": "NewAITees",
+    "subtitle": "A personal portfolio showcasing AI art, programming projects, and game streaming"
+  },
+  "gallery": {
+    "title": "Illustration Gallery",
+    "description": "Browse through my various artworks and illustrations",
+    "latest": "Latest Works",
+    "popular": "Popular Works",
+    "filter": {
+      "all": "All",
+      "digital": "Digital",
+      "traditional": "Traditional",
+      "sketch": "Sketches",
+      "character": "Characters"
+    },
+    "tshirt_info": "I'm selling T-shirts featuring my AI artworks",
+    "japan_shop": "For customers in Japan, visit here",
+    "global_shop": "For international customers, visit here",
+    "request_info": "If you'd like to see any of my AI artworks on a T-shirt, please contact me with your request"
+  },
+  "programming": {
+    "title": "Programming",
+    "description": "I'm involved in programming activities mainly related to AITuber, generative AI, and Model Context Protocol (MCP)",
+    "examples": "Examples",
+    "taskmate": "AI task management tool: A web application that streamlines task management for AI agents",
+    "aituber_app": "AItuber applications: AI response generation systems for Virtual YouTubers",
+    "gen_ai_tools": "Generative AI tools: Image generation assistant tools utilizing generative AI models like Stable Diffusion"
+  },
+  "streaming": {
+    "title": "Streaming Activities",
+    "description": "I'm currently streaming AITuber, generative AI, and AI Coding activities on Twitch",
+    "gift_info": "If you follow my channel, I'll gift you one AI-generated image",
+    "webapps": "Web Apps & Tools",
+    "webapps_desc": "I create web tools to help with AI art generation and management.",
+    "code_samples": "Code Samples",
+    "code_samples_desc": "Various frontend and Python scripts are available. Feel free to fork and experiment with them.",
+    "schedule": "Streaming Schedule",
+    "schedule_desc": "I stream various games including action and RPG titles, mostly on weekday mornings!",
+    "archives": "Archives",
+    "archives_desc": "Missed a stream? You can watch past broadcasts on my Twitch channel."
+  },
+  "contact": {
+    "title": "Contact & SNS",
+    "description": "Get in touch or follow me on social media",
+    "follow": "Follow Me",
+    "info": "Contact Information",
+    "questions": "Questions or Feedback?",
+    "issues": "If you have questions or feedback, please open an issue on GitHub:",
+    "openIssue": "Open an Issue",
+    "guidelines": "Guidelines for Issues",
+    "guidelines1": "Check existing issues before creating a new one",
+    "guidelines2": "Use a clear and descriptive title",
+    "guidelines3": "Include as much detail as possible",
+    "guidelines4": "Add labels to categorize your issue (if applicable)",
+    "message": "Feel free to reach out with feedback, collaboration ideas, or just to say hello!",
+    "twitch": "Twitch",
+    "instagram": "Instagram",
+    "email": "Email"
+  },
+  "footer": {
+    "copyright": "© 2025 NewAITees. All rights reserved.",
+    "rights": "Please contact me regarding reuse or redistribution of any content."
+  },
+  "language": {
+    "ja": "日本語",
+    "en": "English"
+  }
+}
