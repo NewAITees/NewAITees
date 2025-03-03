@@ -348,55 +348,44 @@ window.initGallery = async function() {
   try {
     // gallery-data.jsonからデータを取得
     const response = await fetch('./assets/js/gallery-data.json');
+    if (!response.ok) {
+      throw new Error(`Gallery data could not be loaded: ${response.status}`);
+    }
+    
     const galleryData = await response.json();
+    console.log(`gallery-data.jsonから${galleryData.length}件のデータを読み込みました`);
     
-    // gallery-data.jsonはすでに配列形式なので、カテゴリでグループ化する
-    const categoriesMap = {};
+    // カテゴリ情報を配列形式に変換
+    const processedData = galleryData.map(item => ({
+      ...item,
+      categories: Array.isArray(item.categories) ? item.categories : [item.category],
+      thumbnail: item.thumbnail || item.src,
+      src: item.src.startsWith('./') ? item.src : './' + item.src
+    }));
     
-    // 画像をカテゴリごとに分類
-    galleryData.forEach(item => {
-      if (!categoriesMap[item.category]) {
-        categoriesMap[item.category] = [];
-      }
-      // パスの重複を修正 (./assets/ が既にある場合は調整)
-      if (item.src.startsWith('./assets/')) {
-        item.src = item.src; // そのまま保持
-      } else if (item.src.startsWith('assets/')) {
-        item.src = './' + item.src; // ./を追加
-      }
-      
-      // サムネイル用のパスを追加
-      item.thumbnail = item.src;
-      
-      // カテゴリ情報を配列形式に変換
-      item.categories = [item.category];
-      
-      categoriesMap[item.category].push(item);
-    });
+    // グローバル変数に確実に保存
+    window.galleryImages = processedData;
     
-    // 各カテゴリごとに最大10件までの画像に制限
-    const MAX_IMAGES_PER_CATEGORY = 10;
-    const limitedImages = [];
-    
-    // 各カテゴリのデータを制限して統合
-    Object.keys(categoriesMap).forEach(category => {
-      const limitedCategory = categoriesMap[category].slice(0, MAX_IMAGES_PER_CATEGORY);
-      limitedImages.push(...limitedCategory);
-    });
-    
-    // ギャラリーの初期化済み画像としてセット
-    window.galleryImages = limitedImages;
+    // カテゴリ一覧を取得（重複を除去）
+    const categories = Array.from(new Set(
+      processedData.flatMap(item => item.categories)
+    ));
     
     // フィルターボタンを生成
-    generateFilterButtons(Object.keys(categoriesMap));
+    generateFilterButtons(categories);
     
-    // renderGallery関数を呼び出して画像を表示
-    window.renderGallery(limitedImages);
+    // 初期表示（すべての画像）
+    window.renderGallery(window.galleryImages);
     
-    return limitedImages;
+    return window.galleryImages.length;
   } catch (error) {
     console.error('Gallery initialization failed:', error);
-    throw error;
+    // エラーメッセージを表示
+    const gallery = document.getElementById('gallery');
+    if (gallery) {
+      gallery.innerHTML = '<p class="error-message">ギャラリーデータの読み込みに失敗しました。</p>';
+    }
+    return 0;
   }
 };
 
@@ -406,7 +395,39 @@ window.initGallery = async function() {
  */
 function generateFilterButtons(categories) {
   const filtersContainer = document.querySelector('.gallery-filters');
-  if (!filtersContainer) return;
+  if (!filtersContainer) {
+    console.error('フィルターコンテナが見つかりません');
+    return;
+  }
+  
+  // "すべて表示"ボタンの確実な検出と処理
+  const allButton = filtersContainer.querySelector('.filter-btn[data-filter="all"]');
+  
+  // 既存のイベントリスナーをクリア（重複防止）
+  if (allButton) {
+    const newAllButton = allButton.cloneNode(true);
+    if (allButton.parentNode) {
+      allButton.parentNode.replaceChild(newAllButton, allButton);
+    }
+    
+    // 新しいイベントリスナーを追加
+    newAllButton.addEventListener('click', function() {
+      console.log('「すべて表示」ボタンがクリックされました');
+      // アクティブ状態の更新
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      
+      // ギャラリー表示更新
+      if (window.galleryImages && Array.isArray(window.galleryImages)) {
+        console.log(`ギャラリー更新: ${window.galleryImages.length}件の画像を表示します`);
+        window.renderGallery(window.galleryImages);
+      } else {
+        console.error('ギャラリーデータが利用できません');
+      }
+    });
+  } else {
+    console.error('「すべて表示」ボタンが見つかりません');
+  }
   
   // 既存のボタン（"すべて表示"以外）を削除
   const existingButtons = filtersContainer.querySelectorAll('.filter-btn:not([data-filter="all"])');
@@ -426,24 +447,12 @@ function generateFilterButtons(categories) {
       button.classList.add('active');
       
       // フィルタリング実行
-      const filtered = category === 'all' 
-        ? window.galleryImages 
-        : window.galleryImages.filter(img => img.categories.includes(category));
+      const filtered = window.galleryImages.filter(img => img.categories.includes(category));
       window.renderGallery(filtered);
     });
     
     filtersContainer.appendChild(button);
   });
-  
-  // "すべて表示"ボタンのイベントリスナーを追加
-  const allButton = filtersContainer.querySelector('.filter-btn[data-filter="all"]');
-  if (allButton) {
-    allButton.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      allButton.classList.add('active');
-      window.renderGallery(window.galleryImages);
-    });
-  }
 }
 
 /**
@@ -583,9 +592,40 @@ function openImageModal(image, index, images) {
   modal.style.display = 'block';
 }
 
-// ページ読み込み完了時にギャラリーを初期化
-document.addEventListener('DOMContentLoaded', () => {
-  window.initGallery().catch(error => {
-    console.error('Gallery initialization error:', error);
-  });
+// ページ読み込み完了時に適切な順序で初期化を行う
+document.addEventListener('DOMContentLoaded', async () => {
+  console.log('DOM読み込み完了、ギャラリー初期化開始');
+  
+  try {
+    // 初期化を確実に待つ
+    const count = await window.initGallery();
+    console.log(`ギャラリー初期化完了: ${count}件の画像をロードしました`);
+    
+    // すべてのボタンが正しくイベントを持つか確認
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      if (!btn.onclick && !btn.getAttribute('listener')) {
+        console.warn(`ボタン "${btn.textContent}" にイベントリスナーがありません`);
+        // イベントリスナーを再設定
+        btn.addEventListener('click', function() {
+          const filter = this.dataset.filter;
+          console.log(`フィルター "${filter}" が選択されました`);
+          
+          // アクティブ状態を更新
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // 該当フィルターでギャラリーを更新
+          if (filter === 'all') {
+            window.renderGallery(window.galleryImages);
+          } else {
+            const filtered = window.galleryImages.filter(img => img.categories.includes(filter));
+            window.renderGallery(filtered);
+          }
+        });
+        btn.setAttribute('listener', 'true');
+      }
+    });
+  } catch (error) {
+    console.error('ギャラリー初期化エラー:', error);
+  }
 });
