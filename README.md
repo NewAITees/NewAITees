@@ -11,6 +11,7 @@ AIアートやプログラミング、ゲーム配信など、多彩な活動を
 > **[English Version is here](README_EN.md)**
 
 [Buy me a coffee](https://www.paypal.com/ncp/payment/DL5N46C4CBFKY)
+
 ---
 
 ## ギャラリー
