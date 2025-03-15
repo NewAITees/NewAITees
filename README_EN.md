@@ -10,6 +10,9 @@ All information is also available on GitHub Pages
 
 > **[日本語版はこちら](README.md)**
 
+**[Buy me a coffee](https://www.paypal.com/ncp/payment/DL5N46C4CBFKY)**
+
+
 ---
 
 ## Gallery
