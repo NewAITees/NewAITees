@@ -12,6 +12,7 @@ const puppeteer = require('puppeteer');
 const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const httpServerBin = require.resolve('http-server/bin/http-server');
 
 // テスト用ポート - 9090から変更して競合を避ける
 const testPort = 9091;
@@ -33,47 +34,32 @@ let serverProcess;
 // HTTPサーバーを起動する関数
 function startServer() {
   return new Promise((resolve, reject) => {
+    let resolved = false;
+    const resolveOnce = (value) => {
+      if (!resolved) {
+        resolved = true;
+        resolve(value);
+      }
+    };
+
     logDebug(`HTTPサーバーをポート ${testPort} で起動します...`);
     
-    // ポートが使用中かチェック
-    const checkPortProcess = spawn('lsof', [`-i:${testPort}`], {
-      shell: true,
+    serverProcess = spawn(process.execPath, [httpServerBin, '.', '-p', testPort], {
+      shell: false,
       stdio: ['ignore', 'pipe', 'pipe']
     });
-    
-    let portInUse = false;
-    
-    checkPortProcess.stdout.on('data', (data) => {
-      if (data.toString().includes(`*:${testPort}`)) {
-        portInUse = true;
-      }
-    });
-    
-    checkPortProcess.on('close', (code) => {
-      if (portInUse) {
-        logError(`ポート ${testPort} は既に使用されています。別のポートを試してください。`);
-        resolve({ 
-          close: () => {}, // ダミー関数
-          port: testPort,
-          status: 'skipped' 
-        });
-        return;
-      }
-      
-      serverProcess = spawn('npx', ['http-server', '.', '-p', testPort, '--silent'], {
-        shell: true,
-        stdio: ['ignore', 'pipe', 'pipe']
-      });
       
       let started = false;
+      let startupTimeout;
       
-      serverProcess.stdout.on('data', (data) => {
+    serverProcess.stdout.on('data', (data) => {
         const output = data.toString();
         logDebug(`Server: ${output}`);
         if (!started && output.includes('Available on:')) {
           started = true;
+          clearTimeout(startupTimeout);
           logDebug(`サーバーが正常に起動しました（ポート: ${testPort}）`);
-          resolve({
+          resolveOnce({
             close: () => {
               try {
                 logDebug('SIGTERMシグナルでサーバーを終了します...');
@@ -95,13 +81,13 @@ function startServer() {
             status: 'running'
           });
         }
-      });
+    });
       
-      serverProcess.stderr.on('data', (data) => {
+    serverProcess.stderr.on('data', (data) => {
         const errorOutput = data.toString();
         if (errorOutput.includes('EADDRINUSE')) {
           logError(`ポート ${testPort} は既に使用されています。サーバー起動をスキップします。`);
-          resolve({ 
+          resolveOnce({
             close: () => {}, // ダミー関数
             port: testPort,
             status: 'skipped' 
@@ -109,23 +95,22 @@ function startServer() {
           return;
         }
         logError(`サーバーエラー: ${errorOutput}`);
-      });
+    });
       
-      serverProcess.on('close', (code) => {
-        if (!started) {
+    serverProcess.on('close', (code) => {
+        clearTimeout(startupTimeout);
+        if (!started && !resolved) {
           logError(`サーバーが起動前にコード ${code} で終了しました`);
-          resolve({ 
+          resolveOnce({ 
             close: () => {}, // ダミー関数
             port: testPort,
             status: 'failed' 
           });
-        } else {
-          logDebug(`サーバープロセスがコード ${code} で終了しました`);
         }
-      });
+    });
       
       // タイムアウト設定
-      setTimeout(() => {
+    startupTimeout = setTimeout(() => {
         if (!started) {
           try {
             logError('サーバー起動がタイムアウトしました - プロセスを終了します');
@@ -133,14 +118,13 @@ function startServer() {
           } catch (e) {
             logError('タイムアウトによるサーバープロセス終了中にエラーが発生しました:', e);
           }
-          resolve({ 
+          resolveOnce({ 
             close: () => {}, // ダミー関数
             port: testPort,
             status: 'timeout' 
           });
         }
-      }, 3000); // 5秒から3秒に短縮
-    });
+    }, 3000); // 5秒から3秒に短縮
   });
 }
 

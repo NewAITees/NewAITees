@@ -58,10 +58,18 @@ async function validateHtmlFile(htmlFilePath) {
           continue;
         }
         
+        // URLのクエリやフラグメントはファイルパスではないため除外する
+        const localResourcePath = resourcePath.split(/[?#]/, 1)[0];
+        if (!localResourcePath) {
+          continue;
+        }
+
         // 絶対パスをプロジェクトルートからの相対パスに変換
         const absolutePath = path.resolve(
           path.dirname(htmlFilePath),
-          resourcePath.startsWith('/') ? resourcePath.substring(1) : resourcePath
+          localResourcePath.startsWith('/')
+            ? localResourcePath.substring(1)
+            : localResourcePath
         );
         
         // 相対パスをプロジェクトルートからの相対パスに変換

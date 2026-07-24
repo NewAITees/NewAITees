@@ -11,9 +11,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "indent": ["error", 2],
-    "curly": ["error", "all"],
-    "comma-dangle": ["error", "always-multiline"],
     "no-unused-vars": "warn"
   }
-} 
+}

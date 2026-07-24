@@ -1,5 +1,9 @@
 name: Generate Gallery and Deploy to GitHub Pages
 
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
 on:
   push:
     branches: [ main ]
@@ -12,23 +16,25 @@ jobs:
       contents: write  # この行を追加して書き込み権限を付与
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
           
       - name: Generate Gallery JSON 🖼️
         run: node gallery-generator.js
           
       - name: Install and Build 🔧
         run: |
-          # If you have a build process, uncomment these lines
-          # npm install
-          # npm run build
+          npm test -- --runInBand
           
       - name: Commit gallery data changes
         run: |

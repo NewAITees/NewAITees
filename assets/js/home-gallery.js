@@ -205,7 +205,7 @@ function initHomeGallery() {
     function formatFileName(fileName) {
         if (!fileName) return 'Untitled';
         return fileName
-            .replace(/[0-9-_\.]/g, ' ')
+            .replace(/[0-9-_.]/g, ' ')
             .trim() || 'Untitled';
     }
 }

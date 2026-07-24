@@ -143,5 +143,5 @@ class PerformanceOptimizer {
 
 // Initialize performance optimizations when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  const optimizer = new PerformanceOptimizer();
+  new PerformanceOptimizer();
 }); 

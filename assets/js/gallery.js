@@ -105,7 +105,6 @@ loadGalleryData() {
  */
 limitImagesByCategory(images) {
   // カテゴリごとにイメージをグループ化
-  const categoryCounts = {};
   const categorizedImages = {};
   const limitedImages = [];
   
@@ -334,7 +333,7 @@ updateNavigationButtons() {
 
 // Initialize Gallery when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-const gallery = new GalleryManager();
+new GalleryManager();
 });
 
 /**
