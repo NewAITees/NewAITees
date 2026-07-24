@@ -5,38 +5,38 @@
 
 // DOMが読み込まれたら実行
 document.addEventListener('DOMContentLoaded', () => {
-    // スムーススクロール機能
-    setupSmoothScroll();
+  // スムーススクロール機能
+  setupSmoothScroll();
     
-    // ヘッダーのスクロール挙動
-    setupHeaderScroll();
+  // ヘッダーのスクロール挙動
+  setupHeaderScroll();
 });
 
 /**
  * アンカーリンクのスムーススクロール機能を設定
  */
 function setupSmoothScroll() {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
+  const navLinks = document.querySelectorAll('a[href^="#"]');
     
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
             
-            const targetId = link.getAttribute('href');
-            if (targetId === '#') return;
+      const targetId = link.getAttribute('href');
+      if (targetId === '#') {return;}
             
-            const targetElement = document.querySelector(targetId);
-            if (!targetElement) return;
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) {return;}
             
-            const headerHeight = document.querySelector('#header').offsetHeight;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+      const headerHeight = document.querySelector('#header').offsetHeight;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
             
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        });
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth',
+      });
     });
+  });
 }
 
 /**
@@ -44,13 +44,13 @@ function setupSmoothScroll() {
  * スクロールするとヘッダーの背景を少し不透明にする
  */
 function setupHeaderScroll() {
-    const header = document.querySelector('#header');
+  const header = document.querySelector('#header');
     
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
 } 
