@@ -9,9 +9,12 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+const sharp = require('sharp');
 
 // ギャラリーのルートディレクトリ
 const GALLERY_ROOT = './assets/gallery';
+const THUMBNAIL_ROOT = './assets/gallery-thumbnails';
 
 // サポートされている画像拡張子
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
@@ -22,7 +25,7 @@ const OUTPUT_FILE = './assets/js/gallery-data.json';
 /**
  * フォルダ内の画像ファイルをスキャンする関数
  */
-function scanGalleryFolders() {
+async function scanGalleryFolders() {
   // 結果を格納する配列
   const galleryData = [];
   
@@ -59,9 +62,15 @@ function scanGalleryFolders() {
       imageFiles.forEach(file => {
         const filePath = path.join(GALLERY_ROOT, category, file).replace(/\\/g, '/');
         const relativePath = `./${filePath}`; // HTML/JSから相対パスで参照するため
+        const thumbnailPath = path.join(
+          THUMBNAIL_ROOT,
+          category,
+          `${crypto.createHash('sha1').update(filePath).digest('hex').slice(0, 16)}.webp`,
+        ).replace(/\\/g, '/');
         
         galleryData.push({
           src: relativePath,
+          thumbnail: `./${thumbnailPath}`,
           alt: path.basename(file, path.extname(file)).replace(/[-_]/g, ' '),
           category: category,
           title: path.basename(file, path.extname(file)).replace(/[-_0-9]/g, ' ').trim()
@@ -71,6 +80,17 @@ function scanGalleryFolders() {
     
     console.log(`合計 ${galleryData.length} 枚の画像を処理しました`);
     
+    // サムネイルを生成
+    await Promise.all(galleryData.map(async image => {
+      const sourcePath = image.src.slice(2);
+      const thumbnailPath = image.thumbnail.slice(2);
+      fs.mkdirSync(path.dirname(thumbnailPath), { recursive: true });
+      await sharp(sourcePath)
+        .resize({ width: 640, withoutEnlargement: true })
+        .webp({ quality: 78 })
+        .toFile(thumbnailPath);
+    }));
+
     // 結果をJSONとして保存
     const outputDir = path.dirname(OUTPUT_FILE);
     if (!fs.existsSync(outputDir)) {
@@ -89,4 +109,7 @@ function scanGalleryFolders() {
 }
 
 // スクリプトを実行
-scanGalleryFolders(); 
+scanGalleryFolders().catch(error => {
+  console.error('ギャラリー生成に失敗しました:', error);
+  process.exitCode = 1;
+});

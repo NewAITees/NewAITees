@@ -104,7 +104,7 @@ function initHomeGallery() {
             
       galleryItem.innerHTML = `
                 <div class="img-container">
-                    <img src="${item.src}" alt="${item.alt}" onerror="this.onerror=null; this.src='${FALLBACK_IMAGE_PATH}';">
+                    <img src="${item.thumbnail || item.src}" alt="${item.alt}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${FALLBACK_IMAGE_PATH}';">
                 </div>
                 <div class="home-gallery-item-info">
                     <h3>${title}</h3>
@@ -116,8 +116,7 @@ function initHomeGallery() {
             
       // クリック時の挙動（モーダル表示）
       galleryItem.addEventListener('click', function() {
-        const img = this.querySelector('img');
-        showModal(img.src, item.alt, item.title);
+        showModal(item.src, item.alt, item.title);
       });
             
       // 画像のロード状態をログに記録

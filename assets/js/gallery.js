@@ -76,7 +76,14 @@ class GalleryManager {
         return response.json();
       })
       .then(data => {
-        this.images = data;
+        this.images = data.map(image => ({
+          ...image,
+          categories: Array.isArray(image.categories)
+            ? image.categories
+            : [image.category],
+          src: image.src.startsWith('./') ? image.src : `./${image.src}`,
+          thumbnail: image.thumbnail || image.src,
+        }));
       
         // カテゴリごとの表示数を制限
         this.images = this.limitImagesByCategory(this.images);
@@ -250,7 +257,7 @@ class GalleryManager {
       galleryItem.dataset.index = index;
     
       galleryItem.innerHTML = `
-      <img data-src="${image.thumbnail}" alt="${image.title}" loading="lazy">
+      <img data-src="${image.thumbnail}" alt="${image.title}" loading="lazy" decoding="async">
       <div class="gallery-item-info">
         <h3>${image.title}</h3>
         <p>${image.description}</p>
