@@ -609,6 +609,13 @@
     "title": "no dialogue ghost smoking and"
   },
   {
+    "src": "./assets/gallery/horror/32_100360086_16_wm.jpg",
+    "thumbnail": "./assets/gallery-thumbnails/horror/2b6b576aa9352863.webp",
+    "alt": "32 100360086 16 wm",
+    "category": "horror",
+    "title": "wm"
+  },
+  {
     "src": "./assets/gallery/horror/36-1629226997-0-8Detailed undead in .png",
     "thumbnail": "./assets/gallery-thumbnails/horror/39570fd5b12963de.webp",
     "alt": "36 1629226997 0 8Detailed undead in ",
@@ -656,6 +663,13 @@
     "alt": "87 1616850574 2 8",
     "category": "horror",
     "title": ""
+  },
+  {
+    "src": "./assets/gallery/horror/8_1971214804_12_wm.jpg",
+    "thumbnail": "./assets/gallery-thumbnails/horror/05d24fa3590473a0.webp",
+    "alt": "8 1971214804 12 wm",
+    "category": "horror",
+    "title": "wm"
   },
   {
     "src": "./assets/gallery/horror/9-1998707571-3-8.png",
@@ -978,5 +992,12 @@
     "alt": "30 608620002 8 wm",
     "category": "other",
     "title": "wm"
+  },
+  {
+    "src": "./assets/gallery/other/miniature_world_20251029_111457_0011.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/faf1c25034947416.webp",
+    "alt": "miniature world 20251029 111457 0011",
+    "category": "other",
+    "title": "miniature world"
   }
 ]
