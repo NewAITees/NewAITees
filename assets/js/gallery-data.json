@@ -1174,5 +1174,12 @@
     "alt": "miniature world 20251029 113052 0063",
     "category": "other",
     "title": "miniature world"
+  },
+  {
+    "src": "./assets/gallery/other/random_20251023_030928_0022.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/80f110004f8ad283.webp",
+    "alt": "random 20251023 030928 0022",
+    "category": "other",
+    "title": "random"
   }
 ]
