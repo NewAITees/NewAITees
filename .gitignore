@@ -41,7 +41,6 @@ yarn-error.log*
 # npm / Node.js関連
 node_modules/
 npm-debug.log
-package-lock.json
 
 # yarn関連
 yarn-error.log
@@ -55,6 +54,7 @@ public/
 
 # テストのカバレッジファイル
 coverage/
+tests/e2e/error-report.json
 
 # エディター／IDEの設定ファイル
 .vscode/
