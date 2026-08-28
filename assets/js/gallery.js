@@ -22,7 +22,7 @@ class GalleryManager {
  */
   constructor() {
   // Gallery elements
-    this.galleryContainer = document.querySelector('.gallery-container');
+    this.galleryContainer = document.getElementById('gallery');
     this.filterButtons = document.querySelectorAll('.filter-btn');
     this.modal = document.getElementById('gallery-modal');
     this.modalImg = document.getElementById('modal-img');
@@ -340,6 +340,9 @@ class GalleryManager {
 
 // Initialize Gallery when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  // ギャラリーページ以外（#gallery を持たないページ）では初期化しない
+  if (!document.getElementById('gallery')) {return;}
+
   new GalleryManager();
 });
 
@@ -600,8 +603,11 @@ function openImageModal(image, index, images) {
 
 // ページ読み込み完了時に適切な順序で初期化を行う
 document.addEventListener('DOMContentLoaded', async () => {
+  // ギャラリーページ以外（#gallery を持たないページ）では初期化しない
+  if (!document.getElementById('gallery')) {return;}
+
   console.log('DOM読み込み完了、ギャラリー初期化開始');
-  
+
   try {
     // 初期化を確実に待つ
     const count = await window.initGallery();
