@@ -341,10 +341,10 @@ describe('ブラウザテスト', () => {
     
     // ページのタイトルを確認
     const title = await page.title();
-    expect(title).toBe('New AI Tees - AIアート・プログラミング・ゲーム配信');
+    expect(title).toBe('NewAITees - AIアート・プログラミング・ゲーム配信');
     
     // 主要な要素が表示されていることを確認
-    const heroElement = await page.$('#hero');
+    const heroElement = await page.$('#main-visual');
     expect(heroElement).not.toBeNull();
     
     // リソースエラーがないか確認
