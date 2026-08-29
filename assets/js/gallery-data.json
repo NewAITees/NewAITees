@@ -588,6 +588,13 @@
     "title": "miniature world"
   },
   {
+    "src": "./assets/gallery/bottled_image/random_20251113_123143_0019.png",
+    "thumbnail": "./assets/gallery-thumbnails/bottled_image/fc50547100b3496f.webp",
+    "alt": "random 20251113 123143 0019",
+    "category": "bottled_image",
+    "title": "random"
+  },
+  {
     "src": "./assets/gallery/horror/0-1124611789-4-12.png",
     "thumbnail": "./assets/gallery-thumbnails/horror/7133696d6301cb87.webp",
     "alt": "0 1124611789 4 12",
