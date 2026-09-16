@@ -504,6 +504,13 @@
     "title": "random"
   },
   {
+    "src": "./assets/gallery/abstract_image/random_20260120_141055_0182.png",
+    "thumbnail": "./assets/gallery-thumbnails/abstract_image/62121baa6dc911c4.webp",
+    "alt": "random 20260120 141055 0182",
+    "category": "abstract_image",
+    "title": "random"
+  },
+  {
     "src": "./assets/gallery/botanical/15-652812947-4-12.png",
     "thumbnail": "./assets/gallery-thumbnails/botanical/dd4bf26d36186d15.webp",
     "alt": "15 652812947 4 12",
@@ -1900,6 +1907,13 @@
     "src": "./assets/gallery/other/random_20260120_140426_0161.png",
     "thumbnail": "./assets/gallery-thumbnails/other/3b3226cadf765504.webp",
     "alt": "random 20260120 140426 0161",
+    "category": "other",
+    "title": "random"
+  },
+  {
+    "src": "./assets/gallery/other/random_20260120_141416_0193.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/a2c8d123917a56e8.webp",
+    "alt": "random 20260120 141416 0193",
     "category": "other",
     "title": "random"
   }
