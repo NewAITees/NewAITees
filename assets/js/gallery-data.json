@@ -749,6 +749,13 @@
     "title": "random"
   },
   {
+    "src": "./assets/gallery/bottled_image/random_20260120_142502_0228.png",
+    "thumbnail": "./assets/gallery-thumbnails/bottled_image/e3273bb37c7fb430.webp",
+    "alt": "random 20260120 142502 0228",
+    "category": "bottled_image",
+    "title": "random"
+  },
+  {
     "src": "./assets/gallery/horror/0-1124611789-4-12.png",
     "thumbnail": "./assets/gallery-thumbnails/horror/7133696d6301cb87.webp",
     "alt": "0 1124611789 4 12",
@@ -1867,6 +1874,13 @@
     "alt": "miniature world 20251029 113654 0083",
     "category": "other",
     "title": "miniature world"
+  },
+  {
+    "src": "./assets/gallery/other/polaroid_ruin_megastructure_20260917_030818_0002.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/6732e40f052ef011.webp",
+    "alt": "polaroid ruin megastructure 20260917 030818 0002",
+    "category": "other",
+    "title": "polaroid ruin megastructure"
   },
   {
     "src": "./assets/gallery/other/random_20251023_030928_0022.png",
