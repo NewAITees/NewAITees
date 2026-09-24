@@ -301,6 +301,13 @@
     "title": ""
   },
   {
+    "src": "./assets/gallery/abstract_image/anatomy_as_topology_20260905_035233_0019.png",
+    "thumbnail": "./assets/gallery-thumbnails/abstract_image/d04c1848da9c369d.webp",
+    "alt": "anatomy as topology 20260905 035233 0019",
+    "category": "abstract_image",
+    "title": "anatomy as topology"
+  },
+  {
     "src": "./assets/gallery/abstract_image/random_20251113_113125_0014.png",
     "thumbnail": "./assets/gallery-thumbnails/abstract_image/be5481052c93422c.webp",
     "alt": "random 20251113 113125 0014",
@@ -1802,6 +1809,20 @@
     "src": "./assets/gallery/other/anatomy_as_topology_20260905_035217_0018.png",
     "thumbnail": "./assets/gallery-thumbnails/other/2c8195016c55d540.webp",
     "alt": "anatomy as topology 20260905 035217 0018",
+    "category": "other",
+    "title": "anatomy as topology"
+  },
+  {
+    "src": "./assets/gallery/other/anatomy_as_topology_20260905_035247_0020.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/85811a636c227c61.webp",
+    "alt": "anatomy as topology 20260905 035247 0020",
+    "category": "other",
+    "title": "anatomy as topology"
+  },
+  {
+    "src": "./assets/gallery/other/anatomy_as_topology_20260905_035302_0021.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/073f478924234ec0.webp",
+    "alt": "anatomy as topology 20260905 035302 0021",
     "category": "other",
     "title": "anatomy as topology"
   },
