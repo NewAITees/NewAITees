@@ -1701,6 +1701,13 @@
     "title": "cosmic monochrome engraving"
   },
   {
+    "src": "./assets/gallery/monochrome/face_fragment_minimalism_20260905_041516_0036.png",
+    "thumbnail": "./assets/gallery-thumbnails/monochrome/b8a8805aa5328037.webp",
+    "alt": "face fragment minimalism 20260905 041516 0036",
+    "category": "monochrome",
+    "title": "face fragment minimalism"
+  },
+  {
     "src": "./assets/gallery/monochrome/monochrome_ruin_megastructure_20260917_030131_0003.png",
     "thumbnail": "./assets/gallery-thumbnails/monochrome/a4b73e266c96b9e5.webp",
     "alt": "monochrome ruin megastructure 20260917 030131 0003",
@@ -2007,6 +2014,48 @@
     "alt": "deconstructed face architecture 20260905 045753 0059",
     "category": "other",
     "title": "deconstructed face architecture"
+  },
+  {
+    "src": "./assets/gallery/other/deconstructed_face_architecture_20260905_045807_0060.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/d4cedf439cd5e2a0.webp",
+    "alt": "deconstructed face architecture 20260905 045807 0060",
+    "category": "other",
+    "title": "deconstructed face architecture"
+  },
+  {
+    "src": "./assets/gallery/other/deconstructed_face_architecture_20260905_045822_0061.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/7fade91b52cbc697.webp",
+    "alt": "deconstructed face architecture 20260905 045822 0061",
+    "category": "other",
+    "title": "deconstructed face architecture"
+  },
+  {
+    "src": "./assets/gallery/other/deconstructed_face_architecture_20260905_050103_0072.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/cc2a4a55dd857be1.webp",
+    "alt": "deconstructed face architecture 20260905 050103 0072",
+    "category": "other",
+    "title": "deconstructed face architecture"
+  },
+  {
+    "src": "./assets/gallery/other/face_fragment_minimalism_20260905_040752_0006.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/3c4d60797e21d987.webp",
+    "alt": "face fragment minimalism 20260905 040752 0006",
+    "category": "other",
+    "title": "face fragment minimalism"
+  },
+  {
+    "src": "./assets/gallery/other/face_fragment_minimalism_20260905_041104_0019.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/f42fc31eaf27c838.webp",
+    "alt": "face fragment minimalism 20260905 041104 0019",
+    "category": "other",
+    "title": "face fragment minimalism"
+  },
+  {
+    "src": "./assets/gallery/other/face_fragment_minimalism_20260905_041202_0023.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/9d9a83ede5f3154d.webp",
+    "alt": "face fragment minimalism 20260905 041202 0023",
+    "category": "other",
+    "title": "face fragment minimalism"
   },
   {
     "src": "./assets/gallery/other/miniature_world_20251029_111457_0011.png",
