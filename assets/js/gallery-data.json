@@ -322,6 +322,13 @@
     "title": "anatomy as topology"
   },
   {
+    "src": "./assets/gallery/abstract_image/face_fragment_minimalism_20260905_041812_0048.png",
+    "thumbnail": "./assets/gallery-thumbnails/abstract_image/1f267d4825d15b8b.webp",
+    "alt": "face fragment minimalism 20260905 041812 0048",
+    "category": "abstract_image",
+    "title": "face fragment minimalism"
+  },
+  {
     "src": "./assets/gallery/abstract_image/random_20251113_113125_0014.png",
     "thumbnail": "./assets/gallery-thumbnails/abstract_image/be5481052c93422c.webp",
     "alt": "random 20251113 113125 0014",
@@ -1708,6 +1715,13 @@
     "title": "face fragment minimalism"
   },
   {
+    "src": "./assets/gallery/monochrome/face_fragment_minimalism_20260905_041629_0041.png",
+    "thumbnail": "./assets/gallery-thumbnails/monochrome/31f14f4bf55ac8a7.webp",
+    "alt": "face fragment minimalism 20260905 041629 0041",
+    "category": "monochrome",
+    "title": "face fragment minimalism"
+  },
+  {
     "src": "./assets/gallery/monochrome/monochrome_ruin_megastructure_20260917_030131_0003.png",
     "thumbnail": "./assets/gallery-thumbnails/monochrome/a4b73e266c96b9e5.webp",
     "alt": "monochrome ruin megastructure 20260917 030131 0003",
@@ -2054,6 +2068,13 @@
     "src": "./assets/gallery/other/face_fragment_minimalism_20260905_041202_0023.png",
     "thumbnail": "./assets/gallery-thumbnails/other/9d9a83ede5f3154d.webp",
     "alt": "face fragment minimalism 20260905 041202 0023",
+    "category": "other",
+    "title": "face fragment minimalism"
+  },
+  {
+    "src": "./assets/gallery/other/face_fragment_minimalism_20260905_041925_0053.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/d971a08d96e5f48f.webp",
+    "alt": "face fragment minimalism 20260905 041925 0053",
     "category": "other",
     "title": "face fragment minimalism"
   },
