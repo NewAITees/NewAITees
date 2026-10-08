@@ -77,3 +77,6 @@ test/
 test/data/
 test/fixtures/
 
+# Jekyll のビルド出力ディレクトリ名。Jekyll は使っていないが、
+# 過去の古いスナップショットが575MB分コミットされていたため再発を防ぐ。
+_site/
