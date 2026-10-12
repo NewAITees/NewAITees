@@ -336,6 +336,13 @@
     "title": "facial afterimage rupture"
   },
   {
+    "src": "./assets/gallery/abstract_image/facial_afterimage_rupture_20260905_050744_0024.png",
+    "thumbnail": "./assets/gallery-thumbnails/abstract_image/1423cd407ad9aee9.webp",
+    "alt": "facial afterimage rupture 20260905 050744 0024",
+    "category": "abstract_image",
+    "title": "facial afterimage rupture"
+  },
+  {
     "src": "./assets/gallery/abstract_image/random_20251113_113125_0014.png",
     "thumbnail": "./assets/gallery-thumbnails/abstract_image/be5481052c93422c.webp",
     "alt": "random 20251113 113125 0014",
@@ -1732,6 +1739,13 @@
     "src": "./assets/gallery/monochrome/facial_afterimage_rupture_20260905_050715_0022.png",
     "thumbnail": "./assets/gallery-thumbnails/monochrome/830869142c0501f2.webp",
     "alt": "facial afterimage rupture 20260905 050715 0022",
+    "category": "monochrome",
+    "title": "facial afterimage rupture"
+  },
+  {
+    "src": "./assets/gallery/monochrome/facial_afterimage_rupture_20260905_051140_0040.png",
+    "thumbnail": "./assets/gallery-thumbnails/monochrome/41f92a0eddf8f463.webp",
+    "alt": "facial afterimage rupture 20260905 051140 0040",
     "category": "monochrome",
     "title": "facial afterimage rupture"
   },
