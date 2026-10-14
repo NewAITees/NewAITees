@@ -1,36 +1,37 @@
 import http.server
+import logging
+import os
 import socketserver
 import webbrowser
-import os
-import time
-import logging
 
 # ロギング設定
 logging.basicConfig(
     level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    filename='gallery_test.log',
-    filemode='w'
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    filename="gallery_test.log",
+    filemode="w",
 )
 
 PORT = 8000
+
 
 # カスタムハンドラーでリクエストをログに記録
 class LoggingHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, format, *args):
         logging.info("%s - %s" % (self.address_string(), format % args))
-    
+
     def end_headers(self):
         # JavaScriptコンソールログをキャプチャするための追加ヘッダー
-        self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
+        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
         super().end_headers()
+
 
 # カスタムJavaScriptをギャラリーページに挿入して問題を診断
 def inject_debug_script():
-    if os.path.exists('gallery.html'):
-        with open('gallery.html', 'r', encoding='utf-8') as f:
+    if os.path.exists("gallery.html"):
+        with open("gallery.html", encoding="utf-8") as f:
             content = f.read()
-        
+
         debug_script = """
         <script>
         // ギャラリー機能のデバッグ用スクリプト
@@ -94,41 +95,42 @@ def inject_debug_script():
         };
         </script>
         """
-        
+
         # </body>タグの前にデバッグスクリプトを挿入
-        if '</body>' in content:
-            modified_content = content.replace('</body>', debug_script + '</body>')
-            
+        if "</body>" in content:
+            modified_content = content.replace("</body>", debug_script + "</body>")
+
             # 一時的な変更としてギャラリーページを保存
-            with open('gallery_debug.html', 'w', encoding='utf-8') as f:
+            with open("gallery_debug.html", "w", encoding="utf-8") as f:
                 f.write(modified_content)
-                
-            logging.info('デバッグスクリプトを挿入したギャラリーページを作成しました')
-            return 'gallery_debug.html'
-    
-    logging.error('gallery.htmlが見つかりません')
+
+            logging.info("デバッグスクリプトを挿入したギャラリーページを作成しました")
+            return "gallery_debug.html"
+
+    logging.error("gallery.htmlが見つかりません")
     return None
+
 
 # テスト実行
 def run_test():
-    logging.info('ギャラリーテスト開始')
-    
+    logging.info("ギャラリーテスト開始")
+
     # デバッグスクリプト挿入
     debug_file = inject_debug_script()
-    
+
     if not debug_file:
-        logging.error('テスト用ファイルの作成に失敗しました')
+        logging.error("テスト用ファイルの作成に失敗しました")
         return
-    
+
     # 簡易ウェブサーバー起動
     handler = LoggingHTTPRequestHandler
     with socketserver.TCPServer(("", PORT), handler) as httpd:
         logging.info(f"サーバーをポート {PORT} で起動しました")
-        
+
         # ブラウザでテストページを開く
         test_url = f"http://localhost:{PORT}/{debug_file}"
         webbrowser.open(test_url)
-        
+
         # サーバーを20秒間実行して結果を取得
         logging.info("テスト実行中...")
         try:
@@ -139,5 +141,6 @@ def run_test():
             httpd.server_close()
             logging.info("テスト完了、サーバー停止")
 
+
 if __name__ == "__main__":
-    run_test() 
+    run_test()
