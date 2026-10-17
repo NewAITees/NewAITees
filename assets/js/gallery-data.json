@@ -385,6 +385,13 @@
     "title": "facial fragment space"
   },
   {
+    "src": "./assets/gallery/abstract_image/facial_fragment_space_20260905_043805_0054.png",
+    "thumbnail": "./assets/gallery-thumbnails/abstract_image/f66880d71f1bfaad.webp",
+    "alt": "facial fragment space 20260905 043805 0054",
+    "category": "abstract_image",
+    "title": "facial fragment space"
+  },
+  {
     "src": "./assets/gallery/abstract_image/random_20251113_113125_0014.png",
     "thumbnail": "./assets/gallery-thumbnails/abstract_image/be5481052c93422c.webp",
     "alt": "random 20251113 113125 0014",
@@ -1790,6 +1797,13 @@
     "alt": "facial afterimage rupture 20260905 051140 0040",
     "category": "monochrome",
     "title": "facial afterimage rupture"
+  },
+  {
+    "src": "./assets/gallery/monochrome/facial_fragment_space_20260905_043933_0060.png",
+    "thumbnail": "./assets/gallery-thumbnails/monochrome/68d2b550a3835bc0.webp",
+    "alt": "facial fragment space 20260905 043933 0060",
+    "category": "monochrome",
+    "title": "facial fragment space"
   },
   {
     "src": "./assets/gallery/monochrome/monochrome_ruin_megastructure_20260917_030131_0003.png",
