@@ -455,6 +455,13 @@
     "title": "facial signal field"
   },
   {
+    "src": "./assets/gallery/abstract_image/fragmented_face_geometry_20260905_031127_0006.png",
+    "thumbnail": "./assets/gallery-thumbnails/abstract_image/15ffe9ff80e996cb.webp",
+    "alt": "fragmented face geometry 20260905 031127 0006",
+    "category": "abstract_image",
+    "title": "fragmented face geometry"
+  },
+  {
     "src": "./assets/gallery/abstract_image/random_20251113_113125_0014.png",
     "thumbnail": "./assets/gallery-thumbnails/abstract_image/be5481052c93422c.webp",
     "alt": "random 20251113 113125 0014",
@@ -1867,6 +1874,20 @@
     "alt": "facial fragment space 20260905 043933 0060",
     "category": "monochrome",
     "title": "facial fragment space"
+  },
+  {
+    "src": "./assets/gallery/monochrome/facial_signal_field_20260905_034700_0072.png",
+    "thumbnail": "./assets/gallery-thumbnails/monochrome/215e05a7888d75cf.webp",
+    "alt": "facial signal field 20260905 034700 0072",
+    "category": "monochrome",
+    "title": "facial signal field"
+  },
+  {
+    "src": "./assets/gallery/monochrome/fragmented_face_geometry_20260905_031111_0005.png",
+    "thumbnail": "./assets/gallery-thumbnails/monochrome/caafa1918a9ceab6.webp",
+    "alt": "fragmented face geometry 20260905 031111 0005",
+    "category": "monochrome",
+    "title": "fragmented face geometry"
   },
   {
     "src": "./assets/gallery/monochrome/monochrome_ruin_megastructure_20260917_030131_0003.png",
