@@ -609,6 +609,13 @@
     "title": "fragmented face geometry"
   },
   {
+    "src": "./assets/gallery/abstract_image/fragmented_face_geometry_20260905_141456_0002.png",
+    "thumbnail": "./assets/gallery-thumbnails/abstract_image/ea4db111e7f91572.webp",
+    "alt": "fragmented face geometry 20260905 141456 0002",
+    "category": "abstract_image",
+    "title": "fragmented face geometry"
+  },
+  {
     "src": "./assets/gallery/abstract_image/random_20251113_113125_0014.png",
     "thumbnail": "./assets/gallery-thumbnails/abstract_image/be5481052c93422c.webp",
     "alt": "random 20251113 113125 0014",
@@ -2481,6 +2488,20 @@
     "src": "./assets/gallery/other/fragmented_face_geometry_20260905_131103_0069.png",
     "thumbnail": "./assets/gallery-thumbnails/other/393ff3fde1960ad6.webp",
     "alt": "fragmented face geometry 20260905 131103 0069",
+    "category": "other",
+    "title": "fragmented face geometry"
+  },
+  {
+    "src": "./assets/gallery/other/fragmented_face_geometry_20260905_131154_0072.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/3d0a93c42b8bd411.webp",
+    "alt": "fragmented face geometry 20260905 131154 0072",
+    "category": "other",
+    "title": "fragmented face geometry"
+  },
+  {
+    "src": "./assets/gallery/other/fragmented_face_geometry_20260905_131210_0073.png",
+    "thumbnail": "./assets/gallery-thumbnails/other/dd3b3599a5699cde.webp",
+    "alt": "fragmented face geometry 20260905 131210 0073",
     "category": "other",
     "title": "fragmented face geometry"
   },
